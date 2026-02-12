@@ -90,6 +90,82 @@ ul.task-list li input[type="checkbox"] {
 <p>The hardest part would be getting that “hour’s drive” data, that’s not just counties or states, it’s custom geographic areas based on drive time. I also wouldn’t know how to make the map look this polished with the smooth styling and professional text placement.</p>
 </section>
 </section>
+<section id="seattle-weather-exercises" class="level2">
+<h2 class="anchored" data-anchor-id="seattle-weather-exercises">Seattle Weather Exercises</h2>
+<section id="exercise-1a-high-temperature-each-day" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1a-high-temperature-each-day">Exercise 1a: High temperature each day</h3>
+<pre class="{vega-lite}"><code>{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "High temperature in Seattle each day",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
+  },
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Date"
+    },
+    "y": {
+      "field": "temp_max",
+      "type": "quantitative",
+      "title": "High Temperature (°F)",
+      "scale": {
+        "domain": [0, 100]
+      }
+    }
+  },
+  "width": 600,
+  "height": 300
+}</code></pre>
+</section>
+<section id="exercise-1b-temperatures-overlaid-by-year" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1b-temperatures-overlaid-by-year">Exercise 1b: Temperatures overlaid by year</h3>
+<pre class="{vega-lite}"><code>{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "High temperatures overlaid by day of year",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
+  },
+  "transform": [
+    {
+      "calculate": "month(datum.date)",
+      "as": "month"
+    },
+    {
+      "calculate": "date(datum.date)",
+      "as": "day"
+    },
+    {
+      "calculate": "year(datum.date)",
+      "as": "year"
+    }
+  ],
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "timeUnit": "monthdate",
+      "title": "Day of Year"
+    },
+    "y": {
+      "field": "temp_max",
+      "type": "quantitative",
+      "title": "High Temperature (°F)"
+    },
+    "color": {
+      "field": "year",
+      "type": "nominal",
+      "title": "Year"
+    }
+  },
+  "width": 600,
+  "height": 300
+}</code></pre>
+</section>
+</section>
 </section>
 
 </main>
