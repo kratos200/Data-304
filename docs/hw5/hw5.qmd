@@ -6,3 +6,29 @@ title: "Homework 5"
 # Homework 5
 
 This is where I'll complete the exercises for Homework 5.
+
+## Exercise 2: Visualization Analysis
+
+I chose to analyze the map showing access to Winter Olympic sports facilities across the United States.
+
+[Access to Winter Olympic sports near you](https://flowingdata.com/2026/02/09/access-to-winter-olympic-sports-near-you/)
+
+### b. What marks are being used? What variables are mapped to which properties?
+
+The map uses colored areas to show regions. Color intensity represents how many Winter Olympic sports facilities are within an hour's drive - lighter blue means fewer facilities (1-2), darker blue means more (6+). The yellow circles mark cities that previously hosted the Winter Olympics.
+
+### c. What is the main story of this graphic?
+
+This map shows that most Americans don't live near Winter Olympic sports facilities. They're mostly concentrated in the northern states and mountain areas, while the South and most of the central U.S. have almost no access. It basically shows why only a few specific places in America can realistically host the Winter Olympics.
+
+### d. What makes it a good graphic?
+
+The color coding is really intuitive, you immediately see the pattern without having to study it. The "within an hour's drive" measurement makes it relatable since you can think about your own location. It clearly tells the story that winter sports are only accessible in certain parts of the country.
+
+### e. What features do you think you would know how to implement in Vega-Lite?
+
+I think I could do the basic choropleth map with different colors for different values, add a legend, and plot points for the host cities. The color scale from light to dark seems pretty straightforward.
+
+### f. Are there any features of the graphic that you would not know how to do in Vega-Lite?
+
+The hardest part would be getting that "hour's drive" data, that's not just counties or states, it's custom geographic areas based on drive time. I also wouldn't know how to make the map look this polished with the smooth styling and professional text placement.
