@@ -13,3 +13,5 @@ This portfolio contains my work for Data 304.
 ## Assignments
 
 [HW 5](hw5/)
+
+[HW 6](hw6/)
