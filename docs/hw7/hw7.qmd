@@ -1,0 +1,8 @@
+---
+output-file: "index"
+title: "Homework 7"
+---
+
+# Homework 7
+
+This is where I'll complete the exercises for Homework 7.
