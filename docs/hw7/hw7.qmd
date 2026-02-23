@@ -3,6 +3,296 @@ output-file: "index"
 title: "Homework 7"
 ---
 
-# Homework 7
-
 This is where I'll complete the exercises for Homework 7.
+
+## Exercise 1: 
+
+# a. Bar Chart Guidelines from Wilke
+
+- Use horizontal bars for long labels (swap x and y axis)
+- Order bars by data values, not alphabetically
+- Always start at zero
+
+# b. When NOT to Use Bar Charts
+
+Don't use bars when you can't start at zero. If your data ranges narrowly (like 80-90) where starting at zero would obscure differences, switch to dot plots or line graphs instead of breaking the zero-baseline rule.
+
+# c. Alternatives to Bar Charts
+
+Dot plots and heat maps
+
+
+# d. Stacking vs. Dodging (Offsetting) Bars
+
+Stack when The sum is meaningful (e.g., male + female passengers = total passengers). Only works for counts or values that can be meaningfully added. Dodge/offset when Comparing across categories where sums don't make sense (e.g., median incomes - you can't add two medians together).
+
+# e. Figure 6.3:
+
+```{vega-lite}
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Highest grossing movies for the weekend of December 22-24, 2017",
+  "data": {
+    "values": [
+      {"rank": 1, "title": "Star Wars: The Last Jedi", "title_short": "Star Wars", "amount": 71565498},
+      {"rank": 2, "title": "Jumanji: Welcome to the Jungle", "title_short": "Jumanji", "amount": 36169328},
+      {"rank": 3, "title": "Pitch Perfect 3", "title_short": "Pitch Perfect 3", "amount": 19928525},
+      {"rank": 4, "title": "The Greatest Showman", "title_short": "Greatest Showman", "amount": 8805843},
+      {"rank": 5, "title": "Ferdinand", "title_short": "Ferdinand", "amount": 7316746}
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "title_short",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {"labelLimit": 300}
+    },
+    "x": {
+      "field": "amount",
+      "type": "quantitative",
+      "title": "Weekend gross (USD)",
+      "axis": {"format": "$,.0f"}
+    }
+  },
+  "width": 450,
+  "height": 200
+}
+```
+
+# f. 
+
+```{vega-lite}
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "2016 median U.S. annual household income versus age group and race",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.race == 'asian' || datum.race == 'white' || datum.race == 'hispanic' || datum.race == 'black'"
+    },
+    {
+      "calculate": "datum.race == 'asian' ? 'Asian' : datum.race == 'white' ? 'white' : datum.race == 'hispanic' ? 'Hispanic' : 'black'",
+      "as": "race_label"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "age",
+      "type": "ordinal",
+      "title": "Age (years)",
+      "axis": {"labelAngle": -45}
+    },
+    "y": {
+      "field": "median_income",
+      "type": "quantitative",
+      "title": "Median income (USD)",
+      "axis": {"format": "$,.0f"}
+    },
+    "xOffset": {
+      "field": "race_label",
+      "type": "nominal"
+    },
+    "color": {
+      "field": "race_label",
+      "type": "nominal",
+      "title": "Race",
+      "scale": {
+        "domain": ["Asian", "white", "Hispanic", "black"],
+        "range": ["#D55E00", "#0072B2", "#009E73", "#CC79A7"]
+      }
+    }
+  },
+  "width": 450,
+  "height": 300
+}
+```
+
+
+```{vega-lite}
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "2016 median U.S. annual household income versus age group and race",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.race == 'asian' || datum.race == 'white' || datum.race == 'hispanic' || datum.race == 'black'"
+    },
+    {
+      "calculate": "datum.race == 'asian' ? 'Asian' : datum.race == 'white' ? 'white' : datum.race == 'hispanic' ? 'Hispanic' : 'black'",
+      "as": "race_label"
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "race_label",
+      "type": "ordinal",
+      "title": "Race",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "median_income",
+      "type": "quantitative",
+      "title": "Median income (USD)",
+      "axis": {"format": "$,.0f"}
+    },
+    "xOffset": {
+      "field": "age",
+      "type": "ordinal"
+    },
+    "color": {
+      "field": "age",
+      "type": "ordinal",
+      "title": "Age (years)"
+    }
+  },
+  "width": 450,
+  "height": 300
+}
+```
+
+# g.
+
+```{vega-lite}
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Life expectancy in the Americas, 2007",
+  "data": {
+    "url": "https://calvin-data304.netlify.app/data/cow-gapminder.csv"
+  },
+  "transform": [
+    {"filter": "datum.continent == 'Americas'"},
+    {"filter": "datum.year == 2007"}
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "country",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null
+    },
+    "x": {
+      "field": "lifeExp",
+      "type": "quantitative",
+      "title": "Life expectancy (years)",
+      "scale": {"domain": [0, 85]}
+    }
+  },
+  "width": 400,
+  "height": 500
+}
+```
+
+**Why Figures 6.12 and 6.13 are labeled "bad":**
+
+Figures 6.12 and 6.13 violate the fundamental rule that bar charts must have a zero baseline
+
+
+## Exercise 2:
+
+# b.
+-Design for human perception.
+People see contrast, not absolute values: colors, borders, and surrounding context can change how data is perceived.
+
+-Use shared baselines for comparison.
+Viewers compare aligned lengths more accurately than angles, areas, or stacked segments.
+
+-There’s no rigid rule (like always starting axes at zero), clarity depends on who you’re communicating to and what they know.
+
+# c.
+The Unicorns figure 
+
+
+## Exercise 3
+
+# a.
+Heatmap uses "mark": "rect" with two categorical variables on the x and y axes, and a quantitative variable mapped to the color channel.
+
+# b.
+
+
+# c.
+Heat maps can mislead because a cell’s color looks different depending on the colors around it.
+
+# d.
+In the “show pony” heat map, the issue isn’t serious because the goal is to show big patterns, not compare tiny color differences. The trends (like wars or pandemics) are strong and obvious.
+In part (b), it’s only a problem if you need precise comparisons between similar values. If you’re just showing overall patterns, it’s not a major issue.
+
+
+## Exercise 4
+
+# a.
+pie charts make accurate comparisons harder than they need to be.
+
+# b.
+both Healy and Wilke agree that pie charts are often harder to interpret and that more structured charts (like bars) usually communicate proportions more clearly.
+
+# c.
+Stacked bar charts and Side-by-side bar charts,he generally favors pie charts only for very simple part-to-whole data with few categories, but recommends bars when you want clearer comparisons or to show patterns across groups.
+
+# d.
+
+couldn't get the numbers to be in the right positions
+```{vega-lite}
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Party composition of the 8th German Bundestag, 1976-1980",
+  "data": {
+    "values": [
+      {"party": "CDU/CSU", "seats": 243},
+      {"party": "SPD", "seats": 214},
+      {"party": "FDP", "seats": 39}
+    ]
+  },
+  "mark": {"type": "arc", "innerRadius": 0},
+  "encoding": {
+    "theta": {
+      "field": "seats",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "party",
+      "type": "nominal",
+      "scale": {
+        "domain": ["CDU/CSU", "SPD", "FDP"],
+        "range": ["#5A5A5A", "#C75D5D", "#E8D84E"]
+      },
+      "legend": null
+    },
+    "order": {
+      "field": "seats",
+      "type": "quantitative",
+      "sort": "descending"
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "arc", "innerRadius": 0}
+    },
+    {
+      "mark": {"type": "text", "radius": 150, "fontSize": 18, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "seats", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {"type": "text", "radius": 230, "fontSize": 16},
+      "encoding": {
+        "text": {"field": "party", "type": "nominal"}
+      }
+    }
+  ],
+  "view": {"stroke": null},
+  "width": 300,
+  "height": 300
+}
+```
