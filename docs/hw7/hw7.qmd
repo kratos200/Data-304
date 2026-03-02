@@ -3,6 +3,7 @@ output-file: "index"
 title: "Homework 7"
 ---
 
+# Kwesi Mireku
 This is where I'll complete the exercises for Homework 7.
 
 ## Exercise 1: 
@@ -28,168 +29,188 @@ Stack when The sum is meaningful (e.g., male + female passengers = total passeng
 
 # e. Figure 6.3:
 
-```{vega-lite}
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Highest grossing movies for the weekend of December 22-24, 2017",
-  "data": {
-    "values": [
-      {"rank": 1, "title": "Star Wars: The Last Jedi", "title_short": "Star Wars", "amount": 71565498},
-      {"rank": 2, "title": "Jumanji: Welcome to the Jungle", "title_short": "Jumanji", "amount": 36169328},
-      {"rank": 3, "title": "Pitch Perfect 3", "title_short": "Pitch Perfect 3", "amount": 19928525},
-      {"rank": 4, "title": "The Greatest Showman", "title_short": "Greatest Showman", "amount": 8805843},
-      {"rank": 5, "title": "Ferdinand", "title_short": "Ferdinand", "amount": 7316746}
-    ]
-  },
-  "mark": "bar",
-  "encoding": {
-    "y": {
-      "field": "title_short",
-      "type": "nominal",
-      "sort": "-x",
-      "title": null,
-      "axis": {"labelLimit": 300}
-    },
-    "x": {
-      "field": "amount",
-      "type": "quantitative",
-      "title": "Weekend gross (USD)",
-      "axis": {"format": "$,.0f"}
-    }
-  },
-  "width": 450,
-  "height": 200
-}
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = "Highest grossing movies for the weekend of December 22-24, 2017",
+  data = list(
+    values = list(
+      list(rank = 1, title = "Star Wars: The Last Jedi", title_short = "Star Wars", amount = 71565498),
+      list(rank = 2, title = "Jumanji: Welcome to the Jungle", title_short = "Jumanji", amount = 36169328),
+      list(rank = 3, title = "Pitch Perfect 3", title_short = "Pitch Perfect 3", amount = 19928525),
+      list(rank = 4, title = "The Greatest Showman", title_short = "Greatest Showman", amount = 8805843),
+      list(rank = 5, title = "Ferdinand", title_short = "Ferdinand", amount = 7316746)
+    )
+  ),
+  mark = "bar",
+  encoding = list(
+    y = list(
+      field = "title_short",
+      type = "nominal",
+      sort = "-x",
+      title = NULL,
+      axis = list(labelLimit = 300)
+    ),
+    x = list(
+      field = "amount",
+      type = "quantitative",
+      title = "Weekend gross (USD)",
+      axis = list(format = "$,.0f")
+    )
+  ),
+  width = 450,
+  height = 200
+))
+
+spec
 ```
 
 # f. 
 
-```{vega-lite}
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "2016 median U.S. annual household income versus age group and race",
-  "data": {
-    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
-  },
-  "transform": [
-    {
-      "filter": "datum.race == 'asian' || datum.race == 'white' || datum.race == 'hispanic' || datum.race == 'black'"
-    },
-    {
-      "calculate": "datum.race == 'asian' ? 'Asian' : datum.race == 'white' ? 'white' : datum.race == 'hispanic' ? 'Hispanic' : 'black'",
-      "as": "race_label"
-    }
-  ],
-  "mark": "bar",
-  "encoding": {
-    "x": {
-      "field": "age",
-      "type": "ordinal",
-      "title": "Age (years)",
-      "axis": {"labelAngle": -45}
-    },
-    "y": {
-      "field": "median_income",
-      "type": "quantitative",
-      "title": "Median income (USD)",
-      "axis": {"format": "$,.0f"}
-    },
-    "xOffset": {
-      "field": "race_label",
-      "type": "nominal"
-    },
-    "color": {
-      "field": "race_label",
-      "type": "nominal",
-      "title": "Race",
-      "scale": {
-        "domain": ["Asian", "white", "Hispanic", "black"],
-        "range": ["#D55E00", "#0072B2", "#009E73", "#CC79A7"]
-      }
-    }
-  },
-  "width": 450,
-  "height": 300
-}
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = "2016 median U.S. annual household income versus age group and race",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/cow-income.csv"
+  ),
+  transform = list(
+    list(
+      filter = "datum.race == 'asian' || datum.race == 'white' || datum.race == 'hispanic' || datum.race == 'black'"
+    ),
+    list(
+      calculate = "datum.race == 'asian' ? 'Asian' : datum.race == 'white' ? 'white' : datum.race == 'hispanic' ? 'Hispanic' : 'black'",
+      `as` = "race_label"
+    )
+  ),
+  mark = "bar",
+  encoding = list(
+    x = list(
+      field = "age",
+      type = "ordinal",
+      title = "Age (years)",
+      axis = list(labelAngle = -45)
+    ),
+    y = list(
+      field = "median_income",
+      type = "quantitative",
+      title = "Median income (USD)",
+      axis = list(format = "$,.0f")
+    ),
+    xOffset = list(
+      field = "race_label",
+      type = "nominal"
+    ),
+    color = list(
+      field = "race_label",
+      type = "nominal",
+      title = "Race",
+      scale = list(
+        domain = list("Asian", "white", "Hispanic", "black"),
+        range = list("#D55E00", "#0072B2", "#009E73", "#CC79A7")
+      )
+    )
+  ),
+  width = 450,
+  height = 300
+))
+
+spec
 ```
 
 
-```{vega-lite}
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "2016 median U.S. annual household income versus age group and race",
-  "data": {
-    "url": "https://calvin-data304.netlify.app/data/cow-income.csv"
-  },
-  "transform": [
-    {
-      "filter": "datum.race == 'asian' || datum.race == 'white' || datum.race == 'hispanic' || datum.race == 'black'"
-    },
-    {
-      "calculate": "datum.race == 'asian' ? 'Asian' : datum.race == 'white' ? 'white' : datum.race == 'hispanic' ? 'Hispanic' : 'black'",
-      "as": "race_label"
-    }
-  ],
-  "mark": "bar",
-  "encoding": {
-    "x": {
-      "field": "race_label",
-      "type": "ordinal",
-      "title": "Race",
-      "axis": {"labelAngle": 0}
-    },
-    "y": {
-      "field": "median_income",
-      "type": "quantitative",
-      "title": "Median income (USD)",
-      "axis": {"format": "$,.0f"}
-    },
-    "xOffset": {
-      "field": "age",
-      "type": "ordinal"
-    },
-    "color": {
-      "field": "age",
-      "type": "ordinal",
-      "title": "Age (years)"
-    }
-  },
-  "width": 450,
-  "height": 300
-}
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = "2016 median U.S. annual household income versus age group and race",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/cow-income.csv"
+  ),
+  transform = list(
+    list(
+      filter = "datum.race == 'asian' || datum.race == 'white' || datum.race == 'hispanic' || datum.race == 'black'"
+    ),
+    list(
+      calculate = "datum.race == 'asian' ? 'Asian' : datum.race == 'white' ? 'white' : datum.race == 'hispanic' ? 'Hispanic' : 'black'",
+      `as` = "race_label"
+    )
+  ),
+  mark = "bar",
+  encoding = list(
+    x = list(
+      field = "race_label",
+      type = "ordinal",
+      title = "Race",
+      axis = list(labelAngle = 0)
+    ),
+    y = list(
+      field = "median_income",
+      type = "quantitative",
+      title = "Median income (USD)",
+      axis = list(format = "$,.0f")
+    ),
+    xOffset = list(
+      field = "age",
+      type = "ordinal"
+    ),
+    color = list(
+      field = "age",
+      type = "ordinal",
+      title = "Age (years)"
+    )
+  ),
+  width = 450,
+  height = 300
+))
+
+spec
 ```
 
 # g.
 
-```{vega-lite}
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Life expectancy in the Americas, 2007",
-  "data": {
-    "url": "https://calvin-data304.netlify.app/data/cow-gapminder.csv"
-  },
-  "transform": [
-    {"filter": "datum.continent == 'Americas'"},
-    {"filter": "datum.year == 2007"}
-  ],
-  "mark": "bar",
-  "encoding": {
-    "y": {
-      "field": "country",
-      "type": "nominal",
-      "sort": "-x",
-      "title": null
-    },
-    "x": {
-      "field": "lifeExp",
-      "type": "quantitative",
-      "title": "Life expectancy (years)",
-      "scale": {"domain": [0, 85]}
-    }
-  },
-  "width": 400,
-  "height": 500
-}
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = "Life expectancy in the Americas, 2007",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/cow-gapminder.csv"
+  ),
+  transform = list(
+    list(filter = "datum.continent == 'Americas'"),
+    list(filter = "datum.year == 2007")
+  ),
+  mark = "bar",
+  encoding = list(
+    y = list(
+      field = "country",
+      type = "nominal",
+      sort = "-x",
+      title = NULL
+    ),
+    x = list(
+      field = "lifeExp",
+      type = "quantitative",
+      title = "Life expectancy (years)",
+      scale = list(domain = list(0, 85))
+    )
+  ),
+  width = 400,
+  height = 500
+))
+
+spec
 ```
 
 **Why Figures 6.12 and 6.13 are labeled "bad":**
@@ -218,6 +239,61 @@ The Unicorns figure
 Heatmap uses "mark": "rect" with two categorical variables on the x and y axes, and a quantitative variable mapped to the color channel.
 
 # b.
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = "Internet adoption over time, for select countries",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/cow-internet2.csv"
+  ),
+  mark = list(type = "rect"),
+  encoding = list(
+    x = list(
+      field = "year",
+      type = "ordinal",
+      title = NULL,
+      axis = list(labelAngle = 0)
+    ),
+    y = list(
+      field = "country",
+      type = "nominal",
+      title = NULL,
+      sort = list(
+        field = "users",
+        op = "max",
+        order = "descending"
+      )
+    ),
+    color = list(
+      field = "users",
+      type = "quantitative",
+      title = "internet users / 100 people",
+      scale = list(
+        domain = list(0, 100),
+        scheme = "inferno",
+        reverse = TRUE
+      ),
+      legend = list(
+        direction = "horizontal",
+        orient = "top",
+        gradientLength = 300
+      )
+    ),
+    tooltip = list(
+      list(field = "country", type = "nominal"),
+      list(field = "year", type = "ordinal"),
+      list(field = "users", type = "quantitative", title = "Internet users / 100")
+    )
+  ),
+  width = 600,
+  height = 400
+))
+
+spec
+```
 
 
 # c.
@@ -242,57 +318,61 @@ Stacked bar charts and Side-by-side bar charts,he generally favors pie charts on
 # d.
 
 couldn't get the numbers to be in the right positions
-```{vega-lite}
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Party composition of the 8th German Bundestag, 1976-1980",
-  "data": {
-    "values": [
-      {"party": "CDU/CSU", "seats": 243},
-      {"party": "SPD", "seats": 214},
-      {"party": "FDP", "seats": 39}
-    ]
-  },
-  "mark": {"type": "arc", "innerRadius": 0},
-  "encoding": {
-    "theta": {
-      "field": "seats",
-      "type": "quantitative"
-    },
-    "color": {
-      "field": "party",
-      "type": "nominal",
-      "scale": {
-        "domain": ["CDU/CSU", "SPD", "FDP"],
-        "range": ["#5A5A5A", "#C75D5D", "#E8D84E"]
-      },
-      "legend": null
-    },
-    "order": {
-      "field": "seats",
-      "type": "quantitative",
-      "sort": "descending"
-    }
-  },
-  "layer": [
-    {
-      "mark": {"type": "arc", "innerRadius": 0}
-    },
-    {
-      "mark": {"type": "text", "radius": 150, "fontSize": 18, "fontWeight": "bold"},
-      "encoding": {
-        "text": {"field": "seats", "type": "quantitative"}
-      }
-    },
-    {
-      "mark": {"type": "text", "radius": 230, "fontSize": 16},
-      "encoding": {
-        "text": {"field": "party", "type": "nominal"}
-      }
-    }
-  ],
-  "view": {"stroke": null},
-  "width": 300,
-  "height": 300
-}
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = "Party composition of the 8th German Bundestag, 1976-1980",
+  data = list(
+    values = list(
+      list(party = "CDU/CSU", seats = 243),
+      list(party = "SPD", seats = 214),
+      list(party = "FDP", seats = 39)
+    )
+  ),
+  encoding = list(
+    theta = list(
+      field = "seats",
+      type = "quantitative"
+    ),
+    color = list(
+      field = "party",
+      type = "nominal",
+      scale = list(
+        domain = list("CDU/CSU", "SPD", "FDP"),
+        range = list("#5A5A5A", "#C75D5D", "#E8D84E")
+      ),
+      legend = NULL
+    ),
+    order = list(
+      field = "seats",
+      type = "quantitative",
+      sort = "descending"
+    )
+  ),
+  layer = list(
+    list(
+      mark = list(type = "arc", innerRadius = 0)
+    ),
+    list(
+      mark = list(type = "text", radius = 150, fontSize = 18, fontWeight = "bold"),
+      encoding = list(
+        text = list(field = "seats", type = "quantitative")
+      )
+    ),
+    list(
+      mark = list(type = "text", radius = 230, fontSize = 16),
+      encoding = list(
+        text = list(field = "party", type = "nominal")
+      )
+    )
+  ),
+  view = list(stroke = NULL),
+  width = 300,
+  height = 300
+))
+
+spec
 ```
