@@ -3,7 +3,7 @@ output-file: "index"
 title: "Homework 5"
 ---
 
-# Homework 5
+# Kwesi Mireku
 
 This is where I'll complete the exercises for Homework 5.
 
@@ -40,76 +40,86 @@ The hardest part would be getting that "hour's drive" data, that's not just coun
 ## Seattle Weather Exercises
 
 ### Exercise 1a: High temperature each day
-```{vega-lite}
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High temperature in Seattle each day",
-  "data": {
-    "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
-  },
-  "mark": "line",
-  "encoding": {
-    "x": {
-      "field": "date",
-      "type": "temporal",
-      "title": "Date"
-    },
-    "y": {
-      "field": "temp_max",
-      "type": "quantitative",
-      "title": "High Temperature (°F)",
-      "scale": {
-        "domain": [0, 100]
-      }
-    }
-  },
-  "width": 600,
-  "height": 300
-}
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  description = "High temperature in Seattle each day",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
+  ),
+  mark = "line",
+  encoding = list(
+    x = list(
+      field = "date",
+      type = "temporal",
+      title = "Date"
+    ),
+    y = list(
+      field = "temp_max",
+      type = "quantitative",
+      title = "High Temperature (°F)",
+      scale = list(
+        domain = list(0, 100)
+      )
+    )
+  ),
+  width = 600,
+  height = 300
+))
+
+spec
 ```
 
 ### Exercise 1b: Temperatures overlaid by year
-```{vega-lite}
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "High temperatures overlaid by day of year",
-  "data": {
-    "url": "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
-  },
-  "transform": [
-    {
-      "calculate": "month(datum.date)",
-      "as": "month"
-    },
-    {
-      "calculate": "date(datum.date)",
-      "as": "day"
-    },
-    {
-      "calculate": "year(datum.date)",
-      "as": "year"
-    }
-  ],
-  "mark": "line",
-  "encoding": {
-    "x": {
-      "field": "date",
-      "type": "temporal",
-      "timeUnit": "monthdate",
-      "title": "Day of Year"
-    },
-    "y": {
-      "field": "temp_max",
-      "type": "quantitative",
-      "title": "High Temperature (°F)"
-    },
-    "color": {
-      "field": "year",
-      "type": "nominal",
-      "title": "Year"
-    }
-  },
-  "width": 600,
-  "height": 300
-}
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  description = "High temperatures overlaid by day of year",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/weather-with-dates.csv"
+  ),
+  transform = list(
+    list(
+      calculate = "month(datum.date)",
+      `as` = "month"
+    ),
+    list(
+      calculate = "date(datum.date)",
+      `as` = "day"
+    ),
+    list(
+      calculate = "year(datum.date)",
+      `as` = "year"
+    )
+  ),
+  mark = "line",
+  encoding = list(
+    x = list(
+      field = "date",
+      type = "temporal",
+      timeUnit = "monthdate",
+      title = "Day of Year"
+    ),
+    y = list(
+      field = "temp_max",
+      type = "quantitative",
+      title = "High Temperature (°F)"
+    ),
+    color = list(
+      field = "year",
+      type = "nominal",
+      title = "Year"
+    )
+  ),
+  width = 600,
+  height = 300
+))
+
+spec
 ```
