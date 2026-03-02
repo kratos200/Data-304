@@ -1,0 +1,481 @@
+---
+output-file: "index"
+title: "Homework 8"
+---
+
+# Kwesi Mireku
+This is where I'll complete the exercises for Homework 8.
+
+## Exercise 1 (Supply and demand)
+
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
+  ),
+  transform = list(
+    list(
+      fold = list("demand", "capacity"),
+      `as` = list("type", "value")
+    )
+  ),
+  mark = "bar",
+  encoding = list(
+    x = list(field = "date", type = "ordinal"),
+    y = list(field = "value", type = "quantitative"),
+    xOffset = list(field = "type"),
+    color = list(
+      field = "type",
+      scale = list(range = list("#5B9BD5", "#A5A5A5"))
+    )
+  )
+))
+
+spec
+```
+
+
+
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
+  ),
+  transform = list(
+    list(
+      fold = list("demand", "capacity"),
+      `as` = list("type", "value")
+    )
+  ),
+  mark = "line",
+  encoding = list(
+    x = list(field = "date", type = "ordinal"),
+    y = list(field = "value", type = "quantitative"),
+    color = list(field = "type")
+  )
+))
+
+spec
+```
+
+
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  width = 600,
+  height = 350,
+  data = list(
+    values = list(
+      list(date = "2019-04", capacity = 29263, demand = 46193),
+      list(date = "2019-05", capacity = 28037, demand = 49131),
+      list(date = "2019-06", capacity = 21596, demand = 50124),
+      list(date = "2019-07", capacity = 25895, demand = 48850),
+      list(date = "2019-08", capacity = 25813, demand = 47602),
+      list(date = "2019-09", capacity = 22427, demand = 43697),
+      list(date = "2019-10", capacity = 23605, demand = 41058),
+      list(date = "2019-11", capacity = 24263, demand = 37364),
+      list(date = "2019-12", capacity = 24243, demand = 34364),
+      list(date = "2020-01", capacity = 25533, demand = 34149),
+      list(date = "2020-02", capacity = 24467, demand = 25573),
+      list(date = "2020-03", capacity = 25194, demand = 25284)
+    )
+  ),
+  transform = list(
+    list(
+      calculate = "toDate(datum.date + '-01')",
+      `as` = "parsed_date"
+    )
+  ),
+  layer = list(
+    list(
+      mark = list(type = "bar", color = "#c6dbef"),
+      encoding = list(
+        x = list(
+          field = "parsed_date",
+          type = "temporal",
+          axis = list(title = NULL)
+        ),
+        y = list(
+          field = "demand",
+          type = "quantitative",
+          axis = list(title = NULL)
+        )
+      )
+    ),
+    list(
+      mark = list(type = "bar", color = "#08519c", size = 20),
+      encoding = list(
+        x = list(
+          field = "parsed_date",
+          type = "temporal"
+        ),
+        y = list(
+          field = "capacity",
+          type = "quantitative"
+        )
+      )
+    )
+  )
+))
+
+spec
+```
+
+
+
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
+  ),
+  layer = list(
+    list(
+      mark = "bar",
+      encoding = list(
+        x = list(field = "date", type = "ordinal"),
+        y = list(field = "capacity", type = "quantitative"),
+        color = list(value = "#A5A5A5")
+      )
+    ),
+    list(
+      mark = "bar",
+      encoding = list(
+        x = list(field = "date", type = "ordinal"),
+        y = list(field = "demand", type = "quantitative"),
+        color = list(value = "#5B9BD5"),
+        opacity = list(value = 0.8)
+      )
+    )
+  )
+))
+
+spec
+```
+
+
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  width = 600,
+  height = 350,
+  data = list(
+    values = list(
+      list(date = "2019-04", capacity = 29263, demand = 46193),
+      list(date = "2019-05", capacity = 28037, demand = 49131),
+      list(date = "2019-06", capacity = 21596, demand = 50124),
+      list(date = "2019-07", capacity = 25895, demand = 48850),
+      list(date = "2019-08", capacity = 25813, demand = 47602),
+      list(date = "2019-09", capacity = 22427, demand = 43697),
+      list(date = "2019-10", capacity = 23605, demand = 41058),
+      list(date = "2019-11", capacity = 24263, demand = 37364),
+      list(date = "2019-12", capacity = 24243, demand = 34364),
+      list(date = "2020-01", capacity = 25533, demand = 34149),
+      list(date = "2020-02", capacity = 24467, demand = 25573),
+      list(date = "2020-03", capacity = 25194, demand = 25284)
+    )
+  ),
+  transform = list(
+    list(
+      calculate = "toDate(datum.date + '-01')",
+      `as` = "parsed_date"
+    )
+  ),
+  layer = list(
+    list(
+      mark = list(type = "rule", stroke = "#9ecae1", strokeWidth = 2),
+      encoding = list(
+        x = list(
+          field = "parsed_date",
+          type = "temporal",
+          axis = list(title = NULL)
+        ),
+        y = list(
+          field = "capacity",
+          type = "quantitative",
+          axis = list(title = NULL)
+        ),
+        y2 = list(field = "demand")
+      )
+    ),
+    list(
+      mark = list(type = "point", filled = TRUE, size = 100, color = "#08519c"),
+      encoding = list(
+        x = list(field = "parsed_date", type = "temporal"),
+        y = list(field = "capacity", type = "quantitative")
+      )
+    ),
+    list(
+      mark = list(type = "point", filled = FALSE, stroke = "#3182bd", strokeWidth = 2, size = 150),
+      encoding = list(
+        x = list(field = "parsed_date", type = "temporal"),
+        y = list(field = "demand", type = "quantitative")
+      )
+    )
+  ),
+  config = list(
+    axis = list(grid = FALSE)
+  )
+))
+
+spec
+```
+
+
+
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(
+    url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
+  ),
+  transform = list(
+    list(
+      calculate = "datum.demand - datum.capacity",
+      `as` = "unmet"
+    )
+  ),
+  mark = "line",
+  encoding = list(
+    x = list(field = "date", type = "ordinal"),
+    y = list(field = "unmet", type = "quantitative")
+  )
+))
+
+spec
+```
+
+##Exercise 2
+
+# a.
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  width = 400,
+  height = 300,
+  data = list(
+    url = "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
+  ),
+  mark = "line",
+  encoding = list(
+    x = list(
+      field = "year",
+      type = "ordinal",
+      title = "Year"
+    ),
+    y = list(
+      aggregate = "sum",
+      field = "perc",
+      type = "quantitative",
+      axis = list(format = ".0%"),
+      title = "Sum of perc"
+    ),
+    color = list(
+      field = "sex",
+      type = "nominal"
+    )
+  ),
+  title = "Sum of perc by year and sex"
+))
+
+spec
+```
+
+perc is the proportion of all workers of that sex working in that job in that year.
+
+
+# b.
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(
+    url = "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
+  ),
+  transform = list(
+    list(
+      filter = list(field = "year", oneOf = list(1850, 1900, 1950, 2000))
+    ),
+    list(
+      pivot = "sex",
+      value = "perc",
+      groupby = list("job", "year")
+    )
+  ),
+  facet = list(
+    column = list(field = "year", type = "ordinal")
+  ),
+  spec = list(
+    mark = "point",
+    encoding = list(
+      x = list(
+        field = "men",
+        type = "quantitative",
+        axis = list(format = ".0%"),
+        title = "% of men in job"
+      ),
+      y = list(
+        field = "women",
+        type = "quantitative",
+        axis = list(format = ".0%"),
+        title = "% of women in job"
+      ),
+      tooltip = list(list(field = "job"))
+    )
+  ),
+  title = "Percent of men and women working in each job"
+))
+
+spec
+```
+
+# c.
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(
+    url = "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
+  ),
+  transform = list(
+    list(
+      filter = list(field = "year", oneOf = list(1850, 1900, 1950, 2000))
+    ),
+    list(
+      joinaggregate = list(
+        list(
+          op = "sum",
+          field = "perc",
+          `as` = "job_total"
+        )
+      ),
+      groupby = list("job", "year")
+    ),
+    list(
+      calculate = "datum.perc / datum.job_total",
+      `as` = "within_job_percent"
+    ),
+    list(
+      pivot = "sex",
+      value = "within_job_percent",
+      groupby = list("job", "year")
+    )
+  ),
+  facet = list(
+    column = list(field = "year", type = "ordinal")
+  ),
+  spec = list(
+    mark = "point",
+    encoding = list(
+      x = list(
+        field = "men",
+        type = "quantitative",
+        axis = list(format = ".0%"),
+        title = "% of job that is men"
+      ),
+      y = list(
+        field = "women",
+        type = "quantitative",
+        axis = list(format = ".0%"),
+        title = "% of job that is women"
+      ),
+      tooltip = list(list(field = "job"))
+    )
+  ),
+  title = "Gender composition within each job"
+))
+
+spec
+```
+
+
+## Exercise 3
+
+```{r}
+#| code-fold: true
+#| message: false
+#| warning: false
+library(vegawidget)
+library(readr)
+library(dplyr)
+library(tidyr)
+
+gas <- read_csv("https://calvin-data304.netlify.app/data/pump_price_for_gasoline_us_per_liter.csv")
+codes <- read_csv("https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv")
+
+gas_recent <- gas |>
+  pivot_longer(-country, names_to = "year", values_to = "price_per_liter",
+               values_transform = list(price_per_liter = as.numeric)) |>
+  filter(!is.na(price_per_liter)) |>
+  group_by(country) |>
+  filter(year == max(year)) |>
+  ungroup() |>
+  mutate(price_per_gallon = round(price_per_liter * 3.785, 2))
+
+plot_data <- gas_recent |>
+  left_join(codes, by = c("country" = "name")) |>
+  filter(!is.na(`alpha-3`), !is.na(region)) |>
+  select(country, code = `alpha-3`, region, price_per_gallon)
+
+as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = "Gas prices around the world (USD per gallon), most recent year available",
+  data = list(values = plot_data),
+  mark = list(type = "bar"),
+  encoding = list(
+    x = list(
+      field = "price_per_gallon",
+      type = "quantitative",
+      title = "Price (USD per gallon)",
+      axis = list(format = "$,.2f")
+    ),
+    y = list(
+      field = "code",
+      type = "nominal",
+      title = NULL,
+      sort = list(field = "price_per_gallon", order = "descending"),
+      axis = list(labels = FALSE, ticks = FALSE)
+    ),
+    color = list(
+      field = "region",
+      type = "nominal",
+      title = "Region"
+    ),
+    tooltip = list(
+      list(field = "country", type = "nominal"),
+      list(field = "code", type = "nominal", title = "Code"),
+      list(field = "region", type = "nominal"),
+      list(field = "price_per_gallon", type = "quantitative", title = "USD/gallon", format = "$.2f")
+    )
+  ),
+  width = 500,
+  height = 800
+))
+```
