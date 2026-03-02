@@ -17,3 +17,5 @@ This portfolio contains my work for Data 304.
 [HW 6](hw6/)
 
 [HW 7](hw7/)
+
+[HW 8](hw8/)
