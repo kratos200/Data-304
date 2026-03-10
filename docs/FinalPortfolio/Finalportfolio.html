@@ -178,8 +178,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-3c779d8bad386dad32a1" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3c779d8bad386dad32a1">{"x":{
+<div id="htmlwidget-9a7d83763928f7e42925" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9a7d83763928f7e42925">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
@@ -382,8 +382,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-8987c4aac5ce8c426e6e" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8987c4aac5ce8c426e6e">{"x":{
+<div id="htmlwidget-5ceb31fc72a4a7166421" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5ceb31fc72a4a7166421">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
@@ -527,6 +527,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="exercise-2." class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2.">Exercise 2.</h2>
 </section>
+</section>
+<section id="challenge-4-tickets" class="level1">
+<h1>Challenge #4: Tickets</h1>
+</section>
+<section id="section" class="level1">
+<h1>1.</h1>
+<p>Key takeaways from the original report:</p>
+<ul>
+<li>Monthly Ticket Volume: Volume stayed pretty consistent all year, somewhere between 6,000 and 7,500 tickets per month. Email and telephone were the two biggest channels by a wide margin.</li>
+<li>Work-In-Process Inventory: For most of the year inventory stayed under the 1,700 target. November was the one exception where it clearly went over.</li>
+<li>Service Levels: This is the most interesting one. The team started the year at 82% and steadily climbed to 97% by December, well past the 90% goal.</li>
+<li>Front Office Reachability: Reachability beat the 90% goal every single month. Answer speed was a bit more borderline, hovering right around the 8-second target.</li>
+</ul>
+</section>
+<section id="section-1" class="level1">
+<h1>2.</h1>
+<p>What I chose to focus on: I kept all four metrics in the slide deck since they each add something to the overall picture. The service level improvement is the main story though since it shows the clearest progress over time. The original reachability chart was a bit of a mess with two y-axes stacked on top of each other, so I simplified it to just show reachability against the goal. The answer speed line added visual clutter without changing the main takeaway.</p>
+</section>
+<section id="section-2" class="level1">
+<h1>3.</h1>
+<p><a href="ticket-metrics.html">View slide deck</a></p>
 <section id="exercise-3." class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3.">Exercise 3.</h2>
 </section>
@@ -540,71 +561,114 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"data/tanzania.json"</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Family Planning Trends in Tanzania, 1991-2015"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Contraception use rose sharply while fertility declined and unmet need barely budged."</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">fold =</span> <span class="fu">list</span>(<span class="st">"fertility_rate"</span>, <span class="st">"contraception_pct"</span>, <span class="st">"unmet_need_pct"</span>),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">list</span>(<span class="st">"indicator"</span>, <span class="st">"value"</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"indicator === 'fertility_rate' ? 'Fertility Rate (avg. children)' : indicator === 'contraception_pct' ? 'Contraception Use (%)' : 'Unmet Need for Family Planning (%)'"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"indicator_label"</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"indicator_label"</span>,</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Fertility Rate (avg. children)"</span>, <span class="st">"Contraception Use (%)"</span>, <span class="st">"Unmet Need for Family Planning (%)"</span>)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">200</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">point =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"year"</span>,</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"ordinal"</span>,</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Survey Year"</span>,</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">30</span>)</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"value"</span>,</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">zero =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">title =</span> <span class="st">"Year"</span>),</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"indicator_label"</span>, <span class="at">title =</span> <span class="st">"Indicator"</span>),</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">title =</span> <span class="st">"Value"</span>)</span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve =</span> <span class="fu">list</span>(<span class="at">scale =</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="st">"independent"</span>))</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> <span class="fu">list</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">1991</span>, <span class="at">fertility_rate =</span> <span class="fl">6.2</span>, <span class="at">contraception_pct =</span> <span class="fl">5.9</span>, <span class="at">unmet_need_pct =</span> <span class="fl">27.8</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">1996</span>, <span class="at">fertility_rate =</span> <span class="fl">5.8</span>, <span class="at">contraception_pct =</span> <span class="fl">11.7</span>, <span class="at">unmet_need_pct =</span> <span class="fl">26.0</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">1999</span>, <span class="at">fertility_rate =</span> <span class="fl">5.6</span>, <span class="at">contraception_pct =</span> <span class="fl">15.6</span>, <span class="at">unmet_need_pct =</span> <span class="fl">22.3</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2004</span>, <span class="at">fertility_rate =</span> <span class="fl">5.7</span>, <span class="at">contraception_pct =</span> <span class="fl">17.6</span>, <span class="at">unmet_need_pct =</span> <span class="fl">24.3</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2010</span>, <span class="at">fertility_rate =</span> <span class="fl">5.4</span>, <span class="at">contraception_pct =</span> <span class="fl">23.6</span>, <span class="at">unmet_need_pct =</span> <span class="fl">22.3</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2015</span>, <span class="at">fertility_rate =</span> <span class="fl">5.2</span>, <span class="at">contraception_pct =</span> <span class="fl">38.4</span>, <span class="at">unmet_need_pct =</span> <span class="fl">22.1</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  )),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Family Planning Trends in Tanzania, 1991-2015"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Contraception use rose sharply while fertility declined and unmet need barely budged."</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">fold =</span> <span class="fu">list</span>(<span class="st">"fertility_rate"</span>, <span class="st">"contraception_pct"</span>, <span class="st">"unmet_need_pct"</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">list</span>(<span class="st">"indicator"</span>, <span class="st">"value"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"datum.indicator === 'fertility_rate' ? 'Fertility Rate (avg. children)' : datum.indicator === 'contraception_pct' ? 'Contraception Use (%)' : 'Unmet Need for Family Planning (%)'"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"indicator_label"</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"indicator_label"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Fertility Rate (avg. children)"</span>, <span class="st">"Contraception Use (%)"</span>, <span class="st">"Unmet Need for Family Planning (%)"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">200</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">point =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"year"</span>,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"ordinal"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Survey Year"</span>,</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">30</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"value"</span>,</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="cn">NULL</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">title =</span> <span class="st">"Year"</span>),</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"indicator_label"</span>, <span class="at">title =</span> <span class="st">"Indicator"</span>),</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">title =</span> <span class="st">"Value"</span>)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve =</span> <span class="fu">list</span>(<span class="at">scale =</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="st">"independent"</span>))</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-52cfcffb8cefccd4b8ff" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-52cfcffb8cefccd4b8ff">{"x":{
+<div id="htmlwidget-cb6db826afa33fc82eac" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cb6db826afa33fc82eac">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-      "url": "data/tanzania.json"
+      "values": [
+        {
+          "year": 1991,
+          "fertility_rate": 6.2,
+          "contraception_pct": 5.9,
+          "unmet_need_pct": 27.8
+        },
+        {
+          "year": 1996,
+          "fertility_rate": 5.8,
+          "contraception_pct": 11.7,
+          "unmet_need_pct": 26
+        },
+        {
+          "year": 1999,
+          "fertility_rate": 5.6,
+          "contraception_pct": 15.6,
+          "unmet_need_pct": 22.3
+        },
+        {
+          "year": 2004,
+          "fertility_rate": 5.7,
+          "contraception_pct": 17.6,
+          "unmet_need_pct": 24.3
+        },
+        {
+          "year": 2010,
+          "fertility_rate": 5.4,
+          "contraception_pct": 23.6,
+          "unmet_need_pct": 22.3
+        },
+        {
+          "year": 2015,
+          "fertility_rate": 5.2,
+          "contraception_pct": 38.4,
+          "unmet_need_pct": 22.1
+        }
+      ]
     },
     "title": {
       "text": "Family Planning Trends in Tanzania, 1991-2015",
@@ -624,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         ]
       },
       {
-        "calculate": "indicator === 'fertility_rate' ? 'Fertility Rate (avg. children)' : indicator === 'contraception_pct' ? 'Contraception Use (%)' : 'Unmet Need for Family Planning (%)'",
+        "calculate": "datum.indicator === 'fertility_rate' ? 'Fertility Rate (avg. children)' : datum.indicator === 'contraception_pct' ? 'Contraception Use (%)' : 'Unmet Need for Family Planning (%)'",
         "as": "indicator_label"
       }
     ],
@@ -670,10 +734,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         "y": {
           "field": "value",
           "type": "quantitative",
-          "title": null,
-          "scale": {
-            "zero": false
-          }
+          "title": null
         },
         "tooltip": [
           {
@@ -704,6 +765,448 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+</section>
+<section id="c.-1" class="level1">
+<h1>c.</h1>
+<p>Tanzania has made real progress on family planning over the past few decades, but the picture is more complicated than it first appears. Contraception use went from basically nothing in 1991, just 5.9% of women, to 38.4% by 2015, which is a remarkable shift in a relatively short time. Fertility rates also dropped over the same period, from an average of 6.2 children per woman down to 5.2. Those two trends together look like a success story. But the third panel tells a more sobering story. Unmet need for family planning, the percentage of women who want to avoid pregnancy but aren’t using contraception, barely moved. It started at 27.8% in 1991 and was still sitting at 22.1% in 2015. So even as more women gained access to contraception, a large portion of the population was still being left behind. The gap between rising access and persistent unmet need suggests that supply alone isn’t enough. There are deeper barriers, whether cultural, economic, or logistical, that contraception availability hasn’t been able to fix on its own.</p>
+<section id="exercise-4" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4">Exercise 4</h2>
+</section>
+</section>
+<section id="a.-1" class="level1">
+<h1>a.</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Bitcoin Price History: Boom, Bust, Repeat"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Annotated market cycles from 2017 to 2025. Brush the overview below to zoom in."</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">vconcat =</span> <span class="fu">list</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">800</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">height =</span> <span class="dv">350</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"rect"</span>, <span class="at">opacity =</span> <span class="fl">0.15</span>),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> <span class="fu">list</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2017-01-01"</span>, <span class="at">end =</span> <span class="st">"2017-12-31"</span>, <span class="at">cycle =</span> <span class="st">"2017 Bull Run"</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2018-01-01"</span>, <span class="at">end =</span> <span class="st">"2018-12-31"</span>, <span class="at">cycle =</span> <span class="st">"2018 Crash"</span>),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2019-01-01"</span>, <span class="at">end =</span> <span class="st">"2020-12-31"</span>, <span class="at">cycle =</span> <span class="st">"Accumulation"</span>),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2021-01-01"</span>, <span class="at">end =</span> <span class="st">"2021-11-09"</span>, <span class="at">cycle =</span> <span class="st">"2021 Bull Run"</span>),</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2021-11-10"</span>, <span class="at">end =</span> <span class="st">"2022-12-31"</span>, <span class="at">cycle =</span> <span class="st">"2022 Crash"</span>),</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2023-01-01"</span>, <span class="at">end =</span> <span class="st">"2025-12-31"</span>, <span class="at">cycle =</span> <span class="st">"Recovery"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>          )),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"start"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="at">param =</span> <span class="st">"brush"</span>))),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">x2 =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"end"</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="fu">list</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>              <span class="at">field =</span> <span class="st">"cycle"</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>              <span class="at">scale =</span> <span class="fu">list</span>(</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                <span class="at">domain =</span> <span class="fu">list</span>(<span class="st">"2017 Bull Run"</span>,<span class="st">"2018 Crash"</span>,<span class="st">"Accumulation"</span>,<span class="st">"2021 Bull Run"</span>,<span class="st">"2022 Crash"</span>,<span class="st">"Recovery"</span>),</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>                <span class="at">range  =</span> <span class="fu">list</span>(<span class="st">"#f4a522"</span>,<span class="st">"#e03e3e"</span>,<span class="st">"#888888"</span>,<span class="st">"#f4a522"</span>,<span class="st">"#e03e3e"</span>,<span class="st">"#4caf7d"</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>              ),</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Market Cycle"</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"data/bitcoin.json"</span>),</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#1a1a2e"</span>, <span class="at">strokeWidth =</span> <span class="fl">1.5</span>),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>              <span class="at">field =</span> <span class="st">"date"</span>,</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>              <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="at">param =</span> <span class="st">"brush"</span>))</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>              <span class="at">field =</span> <span class="st">"price"</span>,</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">"Price (USD)"</span>,</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>              <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"$,.0f"</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>            <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">title =</span> <span class="st">"Date"</span>),</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"price"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="st">"Price"</span>, <span class="at">format =</span> <span class="st">"$,.0f"</span>)</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>          <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"text"</span>, <span class="at">dy =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">fontSize =</span> <span class="dv">10</span>, <span class="at">fontStyle =</span> <span class="st">"italic"</span>, <span class="at">opacity =</span> <span class="fl">0.7</span>),</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> <span class="fu">list</span>(</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2017-07-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2017 Bull Run"</span>),</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2018-07-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2018 Crash"</span>),</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2019-12-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"Accumulation"</span>),</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2021-05-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2021 Bull Run"</span>),</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2022-06-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2022 Crash"</span>),</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2024-01-01"</span>, <span class="at">label_y =</span> <span class="dv">115000</span>, <span class="at">label =</span> <span class="st">"Recovery"</span>)</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>          )),</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>          <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"label_date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="at">param =</span> <span class="st">"brush"</span>))),</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"label_y"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>            <span class="at">text =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"label"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>)</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">800</span>,</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>      <span class="at">height =</span> <span class="dv">60</span>,</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"data/bitcoin.json"</span>),</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#1a1a2e"</span>, <span class="at">strokeWidth =</span> <span class="dv">1</span>),</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>      <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>          <span class="at">name =</span> <span class="st">"brush"</span>,</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>          <span class="at">select =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"interval"</span>, <span class="at">encodings =</span> <span class="fu">list</span>(<span class="st">"x"</span>))</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">title =</span> <span class="cn">NULL</span>),</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"price"</span>,</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="cn">NULL</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="htmlwidget-2c5abbb037ff8317ab68" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2c5abbb037ff8317ab68">{"x":{
+  "chart_spec": {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Bitcoin Price History: Boom, Bust, Repeat",
+      "subtitle": "Annotated market cycles from 2017 to 2025. Brush the overview below to zoom in.",
+      "anchor": "start"
+    },
+    "vconcat": [
+      {
+        "width": 800,
+        "height": 350,
+        "layer": [
+          {
+            "mark": {
+              "type": "rect",
+              "opacity": 0.15
+            },
+            "data": {
+              "values": [
+                {
+                  "start": "2017-01-01",
+                  "end": "2017-12-31",
+                  "cycle": "2017 Bull Run"
+                },
+                {
+                  "start": "2018-01-01",
+                  "end": "2018-12-31",
+                  "cycle": "2018 Crash"
+                },
+                {
+                  "start": "2019-01-01",
+                  "end": "2020-12-31",
+                  "cycle": "Accumulation"
+                },
+                {
+                  "start": "2021-01-01",
+                  "end": "2021-11-09",
+                  "cycle": "2021 Bull Run"
+                },
+                {
+                  "start": "2021-11-10",
+                  "end": "2022-12-31",
+                  "cycle": "2022 Crash"
+                },
+                {
+                  "start": "2023-01-01",
+                  "end": "2025-12-31",
+                  "cycle": "Recovery"
+                }
+              ]
+            },
+            "encoding": {
+              "x": {
+                "field": "start",
+                "type": "temporal",
+                "scale": {
+                  "domain": {
+                    "param": "brush"
+                  }
+                }
+              },
+              "x2": {
+                "field": "end"
+              },
+              "color": {
+                "field": "cycle",
+                "type": "nominal",
+                "scale": {
+                  "domain": [
+                    "2017 Bull Run",
+                    "2018 Crash",
+                    "Accumulation",
+                    "2021 Bull Run",
+                    "2022 Crash",
+                    "Recovery"
+                  ],
+                  "range": [
+                    "#f4a522",
+                    "#e03e3e",
+                    "#888888",
+                    "#f4a522",
+                    "#e03e3e",
+                    "#4caf7d"
+                  ]
+                },
+                "legend": {
+                  "title": "Market Cycle"
+                }
+              }
+            }
+          },
+          {
+            "data": {
+              "url": "data/bitcoin.json"
+            },
+            "mark": {
+              "type": "line",
+              "color": "#1a1a2e",
+              "strokeWidth": 1.5
+            },
+            "encoding": {
+              "x": {
+                "field": "date",
+                "type": "temporal",
+                "title": null,
+                "scale": {
+                  "domain": {
+                    "param": "brush"
+                  }
+                }
+              },
+              "y": {
+                "field": "price",
+                "type": "quantitative",
+                "title": "Price (USD)",
+                "axis": {
+                  "format": "$,.0f"
+                }
+              },
+              "tooltip": [
+                {
+                  "field": "date",
+                  "type": "temporal",
+                  "title": "Date"
+                },
+                {
+                  "field": "price",
+                  "type": "quantitative",
+                  "title": "Price",
+                  "format": "$,.0f"
+                }
+              ]
+            }
+          },
+          {
+            "mark": {
+              "type": "text",
+              "dy": -10,
+              "fontSize": 10,
+              "fontStyle": "italic",
+              "opacity": 0.7
+            },
+            "data": {
+              "values": [
+                {
+                  "label_date": "2017-07-01",
+                  "label_y": 65000,
+                  "label": "2017 Bull Run"
+                },
+                {
+                  "label_date": "2018-07-01",
+                  "label_y": 65000,
+                  "label": "2018 Crash"
+                },
+                {
+                  "label_date": "2019-12-01",
+                  "label_y": 65000,
+                  "label": "Accumulation"
+                },
+                {
+                  "label_date": "2021-05-01",
+                  "label_y": 65000,
+                  "label": "2021 Bull Run"
+                },
+                {
+                  "label_date": "2022-06-01",
+                  "label_y": 65000,
+                  "label": "2022 Crash"
+                },
+                {
+                  "label_date": "2024-01-01",
+                  "label_y": 115000,
+                  "label": "Recovery"
+                }
+              ]
+            },
+            "encoding": {
+              "x": {
+                "field": "label_date",
+                "type": "temporal",
+                "scale": {
+                  "domain": {
+                    "param": "brush"
+                  }
+                }
+              },
+              "y": {
+                "field": "label_y",
+                "type": "quantitative"
+              },
+              "text": {
+                "field": "label",
+                "type": "nominal"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "width": 800,
+        "height": 60,
+        "data": {
+          "url": "data/bitcoin.json"
+        },
+        "mark": {
+          "type": "line",
+          "color": "#1a1a2e",
+          "strokeWidth": 1
+        },
+        "params": [
+          {
+            "name": "brush",
+            "select": {
+              "type": "interval",
+              "encodings": [
+                "x"
+              ]
+            }
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "date",
+            "type": "temporal",
+            "title": null
+          },
+          "y": {
+            "field": "price",
+            "type": "quantitative",
+            "title": null,
+            "axis": null
+          }
+        }
+      }
+    ]
+  },
+  "embed_options": {
+    "renderer": "canvas",
+    "defaultStyle": true
+  }
+},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="b.-2" class="level1">
+<h1>b.</h1>
+<p>Design Choices:</p>
+<p>The main goal was to make the cyclical nature of Bitcoin’s price history impossible to miss. Anyone who’s followed crypto knows the pattern — boom, crash, accumulate, repeat — but it’s easy to lose that structure when you’re just looking at a raw price line. The colored background rectangles are doing the heavy lifting here. They divide the chart into named periods so the viewer doesn’t have to mentally parse the timeline themselves. I used orange for bull runs, red for crashes, gray for the accumulation period, and green for the current recovery, which maps naturally to the intuition most people already have about those colors in a financial context. I kept the price line a single dark color with no extra encoding on top of it. Wilke talks about avoiding redundant complexity, and adding color or thickness variation to the line itself would have competed with the background rectangles rather than complementing them. The labels are italic and faded so they read as annotations rather than data, which is a Tufte-style move. They’re context, not content. One alternative I considered was a candlestick chart showing open/high/low/close per day, which is the standard format in financial analysis. I decided against it because the daily volatility noise would have buried the cycle story. A simple line keeps the focus on the big picture trend across years rather than day-to-day swings. The chart also supports interactive tooltips on hover, showing the exact date and price at any point along the line, which lets curious readers dig into specific moments without cluttering the static view.</p>
+</section>
+<section id="c.-2" class="level1">
+<h1>c.</h1>
+<p>Data Source:</p>
+<p>Price data downloaded from CoinGecko: https://www.coingecko.com. The dataset covers daily Bitcoin closing prices from 2013 to present. I filtered to 2017 onward since that’s when Bitcoin entered mainstream awareness and the cycle pattern becomes most visible.</p>
+<section id="exercise-5" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-5">Exercise 5</h2>
+</section>
+</section>
+<section id="a.-2" class="level1">
+<h1>a.</h1>
+<p>Encoding channel other than x or y:</p>
+<p>In the Bitcoin chart, color encodes the market cycle category on the background rectangles. Each cycle gets a distinct hue, orange for bull runs, red for crashes, gray for accumulation, and green for recovery, so the viewer can scan the legend and immediately orient themselves in the timeline without reading every label.</p>
+</section>
+<section id="b.-3" class="level1">
+<h1>b.</h1>
+<p>Layers:</p>
+<p>The Bitcoin chart uses three layers stacked on top of each other: the colored background rectangles, the price line, and the text annotations. The twins chart from Exercise 1 also layers line marks connecting twin pairs with point marks at each end.</p>
+</section>
+<section id="c.-3" class="level1">
+<h1>c.</h1>
+<p>Facets:</p>
+<p>The Tanzania chart facets by indicator across three panels so each metric gets its own y-axis scale. The twins charts use row and column faceting to break the data out by kit and region at the same time.</p>
+</section>
+<section id="d.-1" class="level1">
+<h1>d.</h1>
+<p>Concatenation:</p>
+<p>The Bitcoin chart uses vertical concatenation(vconcat) to stack the main detail view on top of a small overview panel. The two views are linked so brushing the bottom panel zooms the top one into whatever time range you select.</p>
+</section>
+<section id="e." class="level1">
+<h1>e.</h1>
+<p>Non-default scale or guide settings:</p>
+<p>The Bitcoin chart formats the y-axis as dollar amounts with commas. The Tanzania and twins charts use percentage formatting. The twins charts also fix the y-axis domain to 0 to 1 rather than letting it auto-scale, which keeps comparisons honest across facets.</p>
+</section>
+<section id="f." class="level1">
+<h1>f.</h1>
+<p>Tooltips:</p>
+<p>The Bitcoin chart shows the date and price on hover. The twins charts show the individual, kit, region, and genetic share percentage when hovering over any point.</p>
+</section>
+<section id="g." class="level1">
+<h1>g.</h1>
+<p>Interaction: brushing</p>
+<p>The Bitcoin chart includes a brush selection on the overview panel at the bottom. Dragging across any time range zooms the main chart into that window, which lets you dig into specific periods like the 2021 bull run or the 2022 crash without losing the overall context.</p>
+<section id="exercise-6" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-6">Exercise 6</h2>
+</section>
+</section>
+<section id="a.-3" class="level1">
+<h1>a.</h1>
+<ul>
+<li>Forcing a CSV field to numeric with a calculate transform</li>
+</ul>
+<p>When I first loaded the Bitcoin CSV, the price line wasn’t showing up at all even though the data looked fine in R. The problem was that Vega-Lite was reading the price column as a string when loading from a file. I had to add a calculate transform using toNumber(datum.price) to explicitly cast it to a number before it could be encoded on the y-axis. We never ran into this in class because we mostly used inline data or JSON files where types are already handled correctly.</p>
+<ul>
+<li>rect mark for background shading</li>
+</ul>
+<p>We used rect marks in class but not like this. Using them as background shading behind a line chart requires both an x and x2 encoding to define the width of each band, and the color encoding on those marks runs its own independent scale and legend separate from the other layers. It took some trial and error to get the rectangles to sit behind the line without overriding the rest of the encodings.</p>
+<ul>
+<li>Linking a brush param to a scale domain</li>
+</ul>
+<p>To make the detail view respond to the brush selection, I had to set scale = list(domain = list(param = “brush”)) on the x encoding of the top chart. This tells Vega-Lite to use the brush selection as the x domain instead of the full data range, so as you drag on the overview the top chart re-renders to that window. We touched on params and selections briefly in class but I had not seen this specific pattern of wiring a param directly to a scale domain before working it out for this chart.</p>
+</section>
+<section id="b.-4" class="level1">
+<h1>b.</h1>
+<ul>
+<li>Wilke (2019), Chapter 19: Handling overlapping points</li>
+</ul>
+<p>In the twins chart, I used semi-transparent lines and small filled points rather than large opaque marks. Wilke’s chapter on overlapping points explains that reducing opacity and mark size helps when multiple data points share similar positions, which is exactly the problem in the twins chart where several pairs have nearly identical genetic share values across regions. Following this advice keeps individual pairs distinguishable without the chart becoming a blob of overlapping ink.</p>
+<ul>
+<li>Wilke (2019), Chapter 17: The principle of proportional ink</li>
+</ul>
+<p>The y-axis in the twins charts is fixed from 0 to 1 rather than auto-scaled to the data range. Wilke’s chapter on proportional ink argues that the amount of ink used to represent a value should be proportional to the value itself, which means axes should generally start at zero for ratio-scale data. Auto-scaling would have made small differences between twins look much larger than they really are.</p>
+<ul>
+<li>Wilke (2019), Chapter 22: Titles, captions, and tables</li>
+</ul>
+<p>All three of my main charts use a title and subtitle anchored to the left with anchor = “start”. Wilke recommends that titles be informative and tell the reader what to look for rather than just labeling the axes, which is why the Bitcoin chart is titled “Boom, Bust, Repeat” rather than something generic like “Bitcoin Price Over Time.”</p>
 <!-- -->
 
 </section>
@@ -1181,243 +1684,456 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Finalportfolio"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>This is where I'll complete the exercises for the final portfolio.</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 1</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># a.</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Exercise1a-graphic.png)</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>One thing I really like about this graphic(Graphic 4) is that it uses both color and shape to distinguish twin A from twin B. A lot of plots just rely on color alone, which can be a problem for colorblind readers or anyone printing in black and white. Using shape as a backup encoding is a small detail but it makes the chart more robust without adding any visual clutter. I also like the choice to facet by twin pair rather than by region which means each panel tells the complete story of one family across all three kits, so you can immediately see whether that particular pair got consistent results or not. It's a more human way to organize the data, since the pairs are the actual subjects of the study. The compact 3-column grid also works well here; it keeps all six families visible at once without making any individual panel too small to read.</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># b.</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Exercise1b-graphic.png)</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>This chart(Graphic 3-Comparing Kits) has a few problems that make it harder to read than it should be. The biggest issue is that the bars are stacked by ancestry region, but the regions aren't labeled anywhere you just see a total bar height near 1.0 for almost every person, which doesn't actually tell you anything interesting. The whole point of the data is to compare how different kits break down the same person's ancestry across regions, but that information is completely hidden here. On top of that, faceting by individual twin (12 panels total) means you're repeating the x-axis label "Kit" twelve times, which is cluttered and unnecessary. The chart also has a typo in the title ("Differnces") which is a small thing but worth catching. Overall it's doing too much — too many panels, too many bars per panel, and not enough payoff in terms of what you actually learn from looking at it.</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># c.</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># Chart 1 – Comparing Twins:</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span>),</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Identical Twins, Identical DNA?"</span>,</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Each line connects twin A to twin B. Longer lines mean bigger differences."</span>,</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">row =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"kit"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">title =</span> <span class="cn">NULL</span>),</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">column =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"region"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">title =</span> <span class="cn">NULL</span>)</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">110</span>,</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">90</span>,</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#bbb"</span>, <span class="at">strokeWidth =</span> <span class="fl">1.5</span>),</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"id"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"A"</span>, <span class="st">"B"</span>)),</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"genetic share"</span>,</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>          ),</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>          <span class="at">detail =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"pair"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>),</span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"id"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">title =</span> <span class="st">"Twin"</span>),</span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"genetic share"</span>,</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Genetic Share"</span>,</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"%"</span>),</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>          ),</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>          <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"twin"</span>, <span class="at">title =</span> <span class="st">"Individual"</span>),</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"kit"</span>, <span class="at">title =</span> <span class="st">"Kit"</span>),</span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"region"</span>, <span class="at">title =</span> <span class="st">"Region"</span>),</span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"genetic share"</span>, <span class="at">title =</span> <span class="st">"Genetic Share"</span>, <span class="at">format =</span> <span class="st">".1%"</span>)</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>          )</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>spec</span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a><span class="fu"># Chart 2 – Comparing Kits:</span></span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span>),</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Does It Matter Which DNA Kit You Use?"</span>,</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Each line tracks one twin pair across three kits. Flat = kits agreed; steep = they didn't."</span>,</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"region"</span>,</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">3</span></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">180</span>,</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">transform =</span> <span class="fu">list</span>(</span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>        <span class="at">aggregate =</span> <span class="fu">list</span>(</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>          <span class="fu">list</span>(<span class="at">op =</span> <span class="st">"mean"</span>, <span class="at">field =</span> <span class="st">"genetic share"</span>, <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"avg share"</span>)</span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>        <span class="at">groupby =</span> <span class="fu">list</span>(<span class="st">"pair"</span>, <span class="st">"region"</span>, <span class="st">"kit"</span>)</span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">opacity =</span> <span class="fl">0.7</span>),</span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"kit"</span>,</span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>            <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Ancestry"</span>, <span class="st">"23andMe"</span>, <span class="st">"MyHeritage"</span>),</span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">25</span>)</span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>          ),</span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"avg share"</span>,</span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Avg. Genetic Share"</span>,</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"%"</span>),</span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>          ),</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="fu">list</span>(</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"pair"</span>,</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">scheme =</span> <span class="st">"tableau10"</span>),</span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Twin Pair"</span>)</span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>          ),</span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>          <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"pair"</span>, <span class="at">title =</span> <span class="st">"Twin Pair"</span>),</span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"kit"</span>, <span class="at">title =</span> <span class="st">"Kit"</span>),</span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"avg share"</span>, <span class="at">title =</span> <span class="st">"Avg Genetic Share"</span>, <span class="at">format =</span> <span class="st">".1%"</span>)</span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>          )</span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>),</span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"kit"</span>,</span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>            <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Ancestry"</span>, <span class="st">"23andMe"</span>, <span class="st">"MyHeritage"</span>)</span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>          ),</span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"avg share"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"pair"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">scheme =</span> <span class="st">"tableau10"</span>))</span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>spec</span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="fu"># d.</span></span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>Chart 1 – Comparing Twins:</span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.</span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>Chart 2 – Comparing Kits:</span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.</span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 2.</span></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3.</span></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a><span class="fu"># b.</span></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"data/tanzania.json"</span>),</span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Family Planning Trends in Tanzania, 1991-2015"</span>,</span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Contraception use rose sharply while fertility declined and unmet need barely budged."</span>,</span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>      <span class="at">fold =</span> <span class="fu">list</span>(<span class="st">"fertility_rate"</span>, <span class="st">"contraception_pct"</span>, <span class="st">"unmet_need_pct"</span>),</span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">list</span>(<span class="st">"indicator"</span>, <span class="st">"value"</span>)</span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"indicator === 'fertility_rate' ? 'Fertility Rate (avg. children)' : indicator === 'contraception_pct' ? 'Contraception Use (%)' : 'Unmet Need for Family Planning (%)'"</span>,</span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"indicator_label"</span></span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"indicator_label"</span>,</span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Fertility Rate (avg. children)"</span>, <span class="st">"Contraception Use (%)"</span>, <span class="st">"Unmet Need for Family Planning (%)"</span>)</span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">200</span>,</span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">point =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"year"</span>,</span>
-<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"ordinal"</span>,</span>
-<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Survey Year"</span>,</span>
-<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">30</span>)</span>
-<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"value"</span>,</span>
-<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>        <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">zero =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
-<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">title =</span> <span class="st">"Year"</span>),</span>
-<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"indicator_label"</span>, <span class="at">title =</span> <span class="st">"Indicator"</span>),</span>
-<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">title =</span> <span class="st">"Value"</span>)</span>
-<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve =</span> <span class="fu">list</span>(<span class="at">scale =</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="st">"independent"</span>))</span>
-<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>spec</span>
-<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Finalportfolio"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>This is where I'll complete the exercises for the final portfolio.</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 1</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu"># a.</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Exercise1a-graphic.png)</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>One thing I really like about this graphic(Graphic 4) is that it uses both color and shape to distinguish twin A from twin B. A lot of plots just rely on color alone, which can be a problem for colorblind readers or anyone printing in black and white. Using shape as a backup encoding is a small detail but it makes the chart more robust without adding any visual clutter. I also like the choice to facet by twin pair rather than by region which means each panel tells the complete story of one family across all three kits, so you can immediately see whether that particular pair got consistent results or not. It's a more human way to organize the data, since the pairs are the actual subjects of the study. The compact 3-column grid also works well here; it keeps all six families visible at once without making any individual panel too small to read.</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># b.</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Exercise1b-graphic.png)</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>This chart(Graphic 3-Comparing Kits) has a few problems that make it harder to read than it should be. The biggest issue is that the bars are stacked by ancestry region, but the regions aren't labeled anywhere you just see a total bar height near 1.0 for almost every person, which doesn't actually tell you anything interesting. The whole point of the data is to compare how different kits break down the same person's ancestry across regions, but that information is completely hidden here. On top of that, faceting by individual twin (12 panels total) means you're repeating the x-axis label "Kit" twelve times, which is cluttered and unnecessary. The chart also has a typo in the title ("Differnces") which is a small thing but worth catching. Overall it's doing too much — too many panels, too many bars per panel, and not enough payoff in terms of what you actually learn from looking at it.</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># c.</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># Chart 1 – Comparing Twins:</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span>),</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Identical Twins, Identical DNA?"</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Each line connects twin A to twin B. Longer lines mean bigger differences."</span>,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">row =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"kit"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">title =</span> <span class="cn">NULL</span>),</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">column =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"region"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">title =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">110</span>,</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">90</span>,</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#bbb"</span>, <span class="at">strokeWidth =</span> <span class="fl">1.5</span>),</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"id"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"A"</span>, <span class="st">"B"</span>)),</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"genetic share"</span>,</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>          <span class="at">detail =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"pair"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>),</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"id"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">title =</span> <span class="st">"Twin"</span>),</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"genetic share"</span>,</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Genetic Share"</span>,</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"%"</span>),</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>          <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"twin"</span>, <span class="at">title =</span> <span class="st">"Individual"</span>),</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"kit"</span>, <span class="at">title =</span> <span class="st">"Kit"</span>),</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"region"</span>, <span class="at">title =</span> <span class="st">"Region"</span>),</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"genetic share"</span>, <span class="at">title =</span> <span class="st">"Genetic Share"</span>, <span class="at">format =</span> <span class="st">".1%"</span>)</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>spec</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="fu"># Chart 2 – Comparing Kits:</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/twins-genetics-long.json"</span>),</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Does It Matter Which DNA Kit You Use?"</span>,</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Each line tracks one twin pair across three kits. Flat = kits agreed; steep = they didn't."</span>,</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"region"</span>,</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">3</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">180</span>,</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">transform =</span> <span class="fu">list</span>(</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>        <span class="at">aggregate =</span> <span class="fu">list</span>(</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>          <span class="fu">list</span>(<span class="at">op =</span> <span class="st">"mean"</span>, <span class="at">field =</span> <span class="st">"genetic share"</span>, <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"avg share"</span>)</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>        <span class="at">groupby =</span> <span class="fu">list</span>(<span class="st">"pair"</span>, <span class="st">"region"</span>, <span class="st">"kit"</span>)</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">opacity =</span> <span class="fl">0.7</span>),</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"kit"</span>,</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>            <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Ancestry"</span>, <span class="st">"23andMe"</span>, <span class="st">"MyHeritage"</span>),</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">25</span>)</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"avg share"</span>,</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Avg. Genetic Share"</span>,</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"%"</span>),</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="fu">list</span>(</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"pair"</span>,</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>            <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">scheme =</span> <span class="st">"tableau10"</span>),</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Twin Pair"</span>)</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>          <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"pair"</span>, <span class="at">title =</span> <span class="st">"Twin Pair"</span>),</span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"kit"</span>, <span class="at">title =</span> <span class="st">"Kit"</span>),</span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"avg share"</span>, <span class="at">title =</span> <span class="st">"Avg Genetic Share"</span>, <span class="at">format =</span> <span class="st">".1%"</span>)</span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>),</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>        <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>            <span class="at">field =</span> <span class="st">"kit"</span>,</span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>            <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a>            <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Ancestry"</span>, <span class="st">"23andMe"</span>, <span class="st">"MyHeritage"</span>)</span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"avg share"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"pair"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">scheme =</span> <span class="st">"tableau10"</span>))</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>spec</span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="fu"># d.</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>Chart 1 – Comparing Twins:</span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.</span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>Chart 2 – Comparing Kits:</span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 2.</span></span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="fu"># Challenge #4: Tickets</span></span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. </span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>Key takeaways from the original report:</span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Monthly Ticket Volume: Volume stayed pretty consistent all year, somewhere between 6,000 and 7,500 tickets per month. Email and telephone were the two biggest channels by a wide margin.</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Work-In-Process Inventory: For most of the year inventory stayed under the 1,700 target. November was the one exception where it clearly went over.</span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Service Levels: This is the most interesting one. The team started the year at 82% and steadily climbed to 97% by December, well past the 90% goal.</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Front Office Reachability: Reachability beat the 90% goal every single month. Answer speed was a bit more borderline, hovering right around the 8-second target.</span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2.</span></span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>What I chose to focus on:</span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a>I kept all four metrics in the slide deck since they each add something to the overall picture. The service level improvement is the main story though since it shows the clearest progress over time. The original reachability chart was a bit of a mess with two y-axes stacked on top of each other, so I simplified it to just show reachability against the goal. The answer speed line added visual clutter without changing the main takeaway.</span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3.</span></span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">View slide deck</span><span class="co">](ticket-metrics.html)</span></span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3.</span></span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="fu"># b.</span></span>
+<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> <span class="fu">list</span>(</span>
+<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">1991</span>, <span class="at">fertility_rate =</span> <span class="fl">6.2</span>, <span class="at">contraception_pct =</span> <span class="fl">5.9</span>, <span class="at">unmet_need_pct =</span> <span class="fl">27.8</span>),</span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">1996</span>, <span class="at">fertility_rate =</span> <span class="fl">5.8</span>, <span class="at">contraception_pct =</span> <span class="fl">11.7</span>, <span class="at">unmet_need_pct =</span> <span class="fl">26.0</span>),</span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">1999</span>, <span class="at">fertility_rate =</span> <span class="fl">5.6</span>, <span class="at">contraception_pct =</span> <span class="fl">15.6</span>, <span class="at">unmet_need_pct =</span> <span class="fl">22.3</span>),</span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2004</span>, <span class="at">fertility_rate =</span> <span class="fl">5.7</span>, <span class="at">contraception_pct =</span> <span class="fl">17.6</span>, <span class="at">unmet_need_pct =</span> <span class="fl">24.3</span>),</span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2010</span>, <span class="at">fertility_rate =</span> <span class="fl">5.4</span>, <span class="at">contraception_pct =</span> <span class="fl">23.6</span>, <span class="at">unmet_need_pct =</span> <span class="fl">22.3</span>),</span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">year =</span> <span class="dv">2015</span>, <span class="at">fertility_rate =</span> <span class="fl">5.2</span>, <span class="at">contraception_pct =</span> <span class="fl">38.4</span>, <span class="at">unmet_need_pct =</span> <span class="fl">22.1</span>)</span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>  )),</span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Family Planning Trends in Tanzania, 1991-2015"</span>,</span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Contraception use rose sharply while fertility declined and unmet need barely budged."</span>,</span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>      <span class="at">fold =</span> <span class="fu">list</span>(<span class="st">"fertility_rate"</span>, <span class="st">"contraception_pct"</span>, <span class="st">"unmet_need_pct"</span>),</span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">list</span>(<span class="st">"indicator"</span>, <span class="st">"value"</span>)</span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"datum.indicator === 'fertility_rate' ? 'Fertility Rate (avg. children)' : datum.indicator === 'contraception_pct' ? 'Contraception Use (%)' : 'Unmet Need for Family Planning (%)'"</span>,</span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"indicator_label"</span></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"indicator_label"</span>,</span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>    <span class="at">sort =</span> <span class="fu">list</span>(<span class="st">"Fertility Rate (avg. children)"</span>, <span class="st">"Contraception Use (%)"</span>, <span class="st">"Unmet Need for Family Planning (%)"</span>)</span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">200</span>,</span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>    <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">point =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>        <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">60</span>, <span class="at">color =</span> <span class="st">"#4e79a7"</span>)</span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"year"</span>,</span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"ordinal"</span>,</span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Survey Year"</span>,</span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">30</span>)</span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"value"</span>,</span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="cn">NULL</span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">title =</span> <span class="st">"Year"</span>),</span>
+<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"indicator_label"</span>, <span class="at">title =</span> <span class="st">"Indicator"</span>),</span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">title =</span> <span class="st">"Value"</span>)</span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolve =</span> <span class="fu">list</span>(<span class="at">scale =</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="st">"independent"</span>))</span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a>spec</span>
+<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a><span class="fu"># c.</span></span>
+<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a>Tanzania has made real progress on family planning over the past few decades, but the picture is more complicated than it first appears. Contraception use went from basically nothing in 1991, just 5.9% of women, to 38.4% by 2015, which is a remarkable shift in a relatively short time. Fertility rates also dropped over the same period, from an average of 6.2 children per woman down to 5.2. Those two trends together look like a success story. But the third panel tells a more sobering story. Unmet need for family planning, the percentage of women who want to avoid pregnancy but aren't using contraception, barely moved. It started at 27.8% in 1991 and was still sitting at 22.1% in 2015. So even as more women gained access to contraception, a large portion of the population was still being left behind. The gap between rising access and persistent unmet need suggests that supply alone isn't enough. There are deeper barriers, whether cultural, economic, or logistical, that contraception availability hasn't been able to fix on its own.</span>
+<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 4</span></span>
+<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a><span class="fu"># a.</span></span>
+<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
+<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Bitcoin Price History: Boom, Bust, Repeat"</span>,</span>
+<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Annotated market cycles from 2017 to 2025. Brush the overview below to zoom in."</span>,</span>
+<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a>  <span class="at">vconcat =</span> <span class="fu">list</span>(</span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">800</span>,</span>
+<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>      <span class="at">height =</span> <span class="dv">350</span>,</span>
+<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a>      <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a>          <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"rect"</span>, <span class="at">opacity =</span> <span class="fl">0.15</span>),</span>
+<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> <span class="fu">list</span>(</span>
+<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2017-01-01"</span>, <span class="at">end =</span> <span class="st">"2017-12-31"</span>, <span class="at">cycle =</span> <span class="st">"2017 Bull Run"</span>),</span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2018-01-01"</span>, <span class="at">end =</span> <span class="st">"2018-12-31"</span>, <span class="at">cycle =</span> <span class="st">"2018 Crash"</span>),</span>
+<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2019-01-01"</span>, <span class="at">end =</span> <span class="st">"2020-12-31"</span>, <span class="at">cycle =</span> <span class="st">"Accumulation"</span>),</span>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2021-01-01"</span>, <span class="at">end =</span> <span class="st">"2021-11-09"</span>, <span class="at">cycle =</span> <span class="st">"2021 Bull Run"</span>),</span>
+<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2021-11-10"</span>, <span class="at">end =</span> <span class="st">"2022-12-31"</span>, <span class="at">cycle =</span> <span class="st">"2022 Crash"</span>),</span>
+<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">start =</span> <span class="st">"2023-01-01"</span>, <span class="at">end =</span> <span class="st">"2025-12-31"</span>, <span class="at">cycle =</span> <span class="st">"Recovery"</span>)</span>
+<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a>          )),</span>
+<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a>          <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"start"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="at">param =</span> <span class="st">"brush"</span>))),</span>
+<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a>            <span class="at">x2 =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"end"</span>),</span>
+<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="fu">list</span>(</span>
+<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a>              <span class="at">field =</span> <span class="st">"cycle"</span>,</span>
+<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a>              <span class="at">scale =</span> <span class="fu">list</span>(</span>
+<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a>                <span class="at">domain =</span> <span class="fu">list</span>(<span class="st">"2017 Bull Run"</span>,<span class="st">"2018 Crash"</span>,<span class="st">"Accumulation"</span>,<span class="st">"2021 Bull Run"</span>,<span class="st">"2022 Crash"</span>,<span class="st">"Recovery"</span>),</span>
+<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a>                <span class="at">range  =</span> <span class="fu">list</span>(<span class="st">"#f4a522"</span>,<span class="st">"#e03e3e"</span>,<span class="st">"#888888"</span>,<span class="st">"#f4a522"</span>,<span class="st">"#e03e3e"</span>,<span class="st">"#4caf7d"</span>)</span>
+<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a>              ),</span>
+<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Market Cycle"</span>)</span>
+<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"data/bitcoin.json"</span>),</span>
+<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a>          <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#1a1a2e"</span>, <span class="at">strokeWidth =</span> <span class="fl">1.5</span>),</span>
+<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a>          <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a>              <span class="at">field =</span> <span class="st">"date"</span>,</span>
+<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a>              <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="at">param =</span> <span class="st">"brush"</span>))</span>
+<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a>              <span class="at">field =</span> <span class="st">"price"</span>,</span>
+<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">"Price (USD)"</span>,</span>
+<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a>              <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"$,.0f"</span>)</span>
+<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a>            ),</span>
+<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a>            <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
+<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">title =</span> <span class="st">"Date"</span>),</span>
+<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"price"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="st">"Price"</span>, <span class="at">format =</span> <span class="st">"$,.0f"</span>)</span>
+<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a>          <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"text"</span>, <span class="at">dy =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">fontSize =</span> <span class="dv">10</span>, <span class="at">fontStyle =</span> <span class="st">"italic"</span>, <span class="at">opacity =</span> <span class="fl">0.7</span>),</span>
+<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> <span class="fu">list</span>(</span>
+<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2017-07-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2017 Bull Run"</span>),</span>
+<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2018-07-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2018 Crash"</span>),</span>
+<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2019-12-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"Accumulation"</span>),</span>
+<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2021-05-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2021 Bull Run"</span>),</span>
+<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2022-06-01"</span>, <span class="at">label_y =</span> <span class="dv">65000</span>, <span class="at">label =</span> <span class="st">"2022 Crash"</span>),</span>
+<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>(<span class="at">label_date =</span> <span class="st">"2024-01-01"</span>, <span class="at">label_y =</span> <span class="dv">115000</span>, <span class="at">label =</span> <span class="st">"Recovery"</span>)</span>
+<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a>          )),</span>
+<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a>          <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"label_date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">domain =</span> <span class="fu">list</span>(<span class="at">param =</span> <span class="st">"brush"</span>))),</span>
+<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"label_y"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
+<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a>            <span class="at">text =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"label"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>)</span>
+<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">800</span>,</span>
+<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a>      <span class="at">height =</span> <span class="dv">60</span>,</span>
+<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">"data/bitcoin.json"</span>),</span>
+<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#1a1a2e"</span>, <span class="at">strokeWidth =</span> <span class="dv">1</span>),</span>
+<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a>      <span class="at">params =</span> <span class="fu">list</span>(</span>
+<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a>          <span class="at">name =</span> <span class="st">"brush"</span>,</span>
+<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a>          <span class="at">select =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"interval"</span>, <span class="at">encodings =</span> <span class="fu">list</span>(<span class="st">"x"</span>))</span>
+<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">title =</span> <span class="cn">NULL</span>),</span>
+<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"price"</span>,</span>
+<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="cn">NULL</span></span>
+<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a>spec</span>
+<span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a><span class="fu"># b.</span></span>
+<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a>Design Choices:</span>
+<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a>The main goal was to make the cyclical nature of Bitcoin's price history impossible to miss. Anyone who's followed crypto knows the pattern — boom, crash, accumulate, repeat — but it's easy to lose that structure when you're just looking at a raw price line. The colored background rectangles are doing the heavy lifting here. They divide the chart into named periods so the viewer doesn't have to mentally parse the timeline themselves. I used orange for bull runs, red for crashes, gray for the accumulation period, and green for the current recovery, which maps naturally to the intuition most people already have about those colors in a financial context.</span>
+<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a>I kept the price line a single dark color with no extra encoding on top of it. Wilke talks about avoiding redundant complexity, and adding color or thickness variation to the line itself would have competed with the background rectangles rather than complementing them. The labels are italic and faded so they read as annotations rather than data, which is a Tufte-style move. They're context, not content.</span>
+<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a>One alternative I considered was a candlestick chart showing open/high/low/close per day, which is the standard format in financial analysis. I decided against it because the daily volatility noise would have buried the cycle story. A simple line keeps the focus on the big picture trend across years rather than day-to-day swings.</span>
+<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a>The chart also supports interactive tooltips on hover, showing the exact date and price at any point along the line, which lets curious readers dig into specific moments without cluttering the static view.</span>
+<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a><span class="fu"># c.</span></span>
+<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a>Data Source:</span>
+<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-394"><a href="#cb5-394" aria-hidden="true" tabindex="-1"></a>Price data downloaded from CoinGecko: https://www.coingecko.com. The dataset covers daily Bitcoin closing prices from 2013 to present. I filtered to 2017 onward since that's when Bitcoin entered mainstream awareness and the cycle pattern becomes most visible.</span>
+<span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 5</span></span>
+<span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a><span class="fu"># a.</span></span>
+<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a>Encoding channel other than x or y:</span>
+<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a>In the Bitcoin chart, color encodes the market cycle category on the background rectangles. Each cycle gets a distinct hue, orange for bull runs, red for crashes, gray for accumulation, and green for recovery, so the viewer can scan the legend and immediately orient themselves in the timeline without reading every label.</span>
+<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a><span class="fu"># b.</span></span>
+<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a>Layers:</span>
+<span id="cb5-405"><a href="#cb5-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-406"><a href="#cb5-406" aria-hidden="true" tabindex="-1"></a>The Bitcoin chart uses three layers stacked on top of each other: the colored background rectangles, the price line, and the text annotations. The twins chart from Exercise 1 also layers line marks connecting twin pairs with point marks at each end.</span>
+<span id="cb5-407"><a href="#cb5-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-408"><a href="#cb5-408" aria-hidden="true" tabindex="-1"></a><span class="fu"># c.</span></span>
+<span id="cb5-409"><a href="#cb5-409" aria-hidden="true" tabindex="-1"></a>Facets:</span>
+<span id="cb5-410"><a href="#cb5-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-411"><a href="#cb5-411" aria-hidden="true" tabindex="-1"></a>The Tanzania chart facets by indicator across three panels so each metric gets its own y-axis scale. The twins charts use row and column faceting to break the data out by kit and region at the same time.</span>
+<span id="cb5-412"><a href="#cb5-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-413"><a href="#cb5-413" aria-hidden="true" tabindex="-1"></a><span class="fu"># d.</span></span>
+<span id="cb5-414"><a href="#cb5-414" aria-hidden="true" tabindex="-1"></a>Concatenation:</span>
+<span id="cb5-415"><a href="#cb5-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-416"><a href="#cb5-416" aria-hidden="true" tabindex="-1"></a>The Bitcoin chart uses vertical concatenation(vconcat) to stack the main detail view on top of a small overview panel. The two views are linked so brushing the bottom panel zooms the top one into whatever time range you select.</span>
+<span id="cb5-417"><a href="#cb5-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-418"><a href="#cb5-418" aria-hidden="true" tabindex="-1"></a><span class="fu"># e.</span></span>
+<span id="cb5-419"><a href="#cb5-419" aria-hidden="true" tabindex="-1"></a>Non-default scale or guide settings:</span>
+<span id="cb5-420"><a href="#cb5-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-421"><a href="#cb5-421" aria-hidden="true" tabindex="-1"></a>The Bitcoin chart formats the y-axis as dollar amounts with commas. The Tanzania and twins charts use percentage formatting. The twins charts also fix the y-axis domain to 0 to 1 rather than letting it auto-scale, which keeps comparisons honest across facets.</span>
+<span id="cb5-422"><a href="#cb5-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-423"><a href="#cb5-423" aria-hidden="true" tabindex="-1"></a><span class="fu"># f.</span></span>
+<span id="cb5-424"><a href="#cb5-424" aria-hidden="true" tabindex="-1"></a>Tooltips:</span>
+<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-426"><a href="#cb5-426" aria-hidden="true" tabindex="-1"></a>The Bitcoin chart shows the date and price on hover. The twins charts show the individual, kit, region, and genetic share percentage when hovering over any point.</span>
+<span id="cb5-427"><a href="#cb5-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-428"><a href="#cb5-428" aria-hidden="true" tabindex="-1"></a><span class="fu"># g.</span></span>
+<span id="cb5-429"><a href="#cb5-429" aria-hidden="true" tabindex="-1"></a>Interaction: brushing</span>
+<span id="cb5-430"><a href="#cb5-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-431"><a href="#cb5-431" aria-hidden="true" tabindex="-1"></a>The Bitcoin chart includes a brush selection on the overview panel at the bottom. Dragging across any time range zooms the main chart into that window, which lets you dig into specific periods like the 2021 bull run or the 2022 crash without losing the overall context.</span>
+<span id="cb5-432"><a href="#cb5-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-433"><a href="#cb5-433" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 6</span></span>
+<span id="cb5-434"><a href="#cb5-434" aria-hidden="true" tabindex="-1"></a><span class="fu"># a.</span></span>
+<span id="cb5-435"><a href="#cb5-435" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Forcing a CSV field to numeric with a calculate transform</span>
+<span id="cb5-436"><a href="#cb5-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-437"><a href="#cb5-437" aria-hidden="true" tabindex="-1"></a>When I first loaded the Bitcoin CSV, the price line wasn't showing up at all even though the data looked fine in R. The problem was that Vega-Lite was reading the price column as a string when loading from a file. I had to add a calculate transform using toNumber(datum.price) to explicitly cast it to a number before it could be encoded on the y-axis. We never ran into this in class because we mostly used inline data or JSON files where types are already handled correctly.</span>
+<span id="cb5-438"><a href="#cb5-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-439"><a href="#cb5-439" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>rect mark for background shading</span>
+<span id="cb5-440"><a href="#cb5-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-441"><a href="#cb5-441" aria-hidden="true" tabindex="-1"></a>We used rect marks in class but not like this. Using them as background shading behind a line chart requires both an x and x2 encoding to define the width of each band, and the color encoding on those marks runs its own independent scale and legend separate from the other layers. It took some trial and error to get the rectangles to sit behind the line without overriding the rest of the encodings.</span>
+<span id="cb5-442"><a href="#cb5-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-443"><a href="#cb5-443" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Linking a brush param to a scale domain</span>
+<span id="cb5-444"><a href="#cb5-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-445"><a href="#cb5-445" aria-hidden="true" tabindex="-1"></a>To make the detail view respond to the brush selection, I had to set scale = list(domain = list(param = "brush")) on the x encoding of the top chart. This tells Vega-Lite to use the brush selection as the x domain instead of the full data range, so as you drag on the overview the top chart re-renders to that window. We touched on params and selections briefly in class but I had not seen this specific pattern of wiring a param directly to a scale domain before working it out for this chart.</span>
+<span id="cb5-446"><a href="#cb5-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-447"><a href="#cb5-447" aria-hidden="true" tabindex="-1"></a><span class="fu"># b.</span></span>
+<span id="cb5-448"><a href="#cb5-448" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wilke (2019), Chapter 19: Handling overlapping points</span>
+<span id="cb5-449"><a href="#cb5-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-450"><a href="#cb5-450" aria-hidden="true" tabindex="-1"></a>In the twins chart, I used semi-transparent lines and small filled points rather than large opaque marks. Wilke's chapter on overlapping points explains that reducing opacity and mark size helps when multiple data points share similar positions, which is exactly the problem in the twins chart where several pairs have nearly identical genetic share values across regions. Following this advice keeps individual pairs distinguishable without the chart becoming a blob of overlapping ink.</span>
+<span id="cb5-451"><a href="#cb5-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-452"><a href="#cb5-452" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wilke (2019), Chapter 17: The principle of proportional ink</span>
+<span id="cb5-453"><a href="#cb5-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-454"><a href="#cb5-454" aria-hidden="true" tabindex="-1"></a>The y-axis in the twins charts is fixed from 0 to 1 rather than auto-scaled to the data range. Wilke's chapter on proportional ink argues that the amount of ink used to represent a value should be proportional to the value itself, which means axes should generally start at zero for ratio-scale data. Auto-scaling would have made small differences between twins look much larger than they really are.</span>
+<span id="cb5-455"><a href="#cb5-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-456"><a href="#cb5-456" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wilke (2019), Chapter 22: Titles, captions, and tables</span>
+<span id="cb5-457"><a href="#cb5-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-458"><a href="#cb5-458" aria-hidden="true" tabindex="-1"></a>All three of my main charts use a title and subtitle anchored to the left with anchor = "start". Wilke recommends that titles be informative and tell the reader what to look for rather than just labeling the axes, which is why the Bitcoin chart is titled "Boom, Bust, Repeat" rather than something generic like "Bitcoin Price Over Time."</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
