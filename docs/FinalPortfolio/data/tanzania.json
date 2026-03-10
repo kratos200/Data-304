@@ -1,0 +1,8 @@
+[
+  {"year": 1991, "fertility_rate": 6.2, "contraception_pct": 5.9, "unmet_need_pct": 27.8},
+  {"year": 1996, "fertility_rate": 5.8, "contraception_pct": 11.7, "unmet_need_pct": 26.0},
+  {"year": 1999, "fertility_rate": 5.6, "contraception_pct": 15.6, "unmet_need_pct": 22.3},
+  {"year": 2004, "fertility_rate": 5.7, "contraception_pct": 17.6, "unmet_need_pct": 24.3},
+  {"year": 2010, "fertility_rate": 5.4, "contraception_pct": 23.6, "unmet_need_pct": 22.3},
+  {"year": 2015, "fertility_rate": 5.2, "contraception_pct": 38.4, "unmet_need_pct": 22.1}
+]

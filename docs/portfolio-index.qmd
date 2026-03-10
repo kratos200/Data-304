@@ -11,6 +11,7 @@ title: "Kwesi Data 304 Portfolio"
 This portfolio contains my work for Data 304.
 
 ## Assignments
+[Final Portfolio](FinalPortfolio/Finalportfolio.html)
 
 [HW 5](hw5/)
 

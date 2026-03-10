@@ -1,0 +1,238 @@
+---
+title: "Finalportfolio"
+format: html
+code-tools: true
+---
+
+This is where I'll complete the exercises for the final portfolio.
+
+## Exercise 1
+
+# a.
+![](images/Exercise1a-graphic.png)
+One thing I really like about this graphic(Graphic 4) is that it uses both color and shape to distinguish twin A from twin B. A lot of plots just rely on color alone, which can be a problem for colorblind readers or anyone printing in black and white. Using shape as a backup encoding is a small detail but it makes the chart more robust without adding any visual clutter. I also like the choice to facet by twin pair rather than by region which means each panel tells the complete story of one family across all three kits, so you can immediately see whether that particular pair got consistent results or not. It's a more human way to organize the data, since the pairs are the actual subjects of the study. The compact 3-column grid also works well here; it keeps all six families visible at once without making any individual panel too small to read.
+
+# b.
+![](images/Exercise1b-graphic.png)
+This chart(Graphic 3-Comparing Kits) has a few problems that make it harder to read than it should be. The biggest issue is that the bars are stacked by ancestry region, but the regions aren't labeled anywhere you just see a total bar height near 1.0 for almost every person, which doesn't actually tell you anything interesting. The whole point of the data is to compare how different kits break down the same person's ancestry across regions, but that information is completely hidden here. On top of that, faceting by individual twin (12 panels total) means you're repeating the x-axis label "Kit" twelve times, which is cluttered and unnecessary. The chart also has a typo in the title ("Differnces") which is a small thing but worth catching. Overall it's doing too much — too many panels, too many bars per panel, and not enough payoff in terms of what you actually learn from looking at it.
+
+# c.
+
+# Chart 1 – Comparing Twins:
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(url = "https://calvin-data304.netlify.app/data/twins-genetics-long.json"),
+  title = list(
+    text = "Identical Twins, Identical DNA?",
+    subtitle = "Each line connects twin A to twin B. Longer lines mean bigger differences.",
+    anchor = "start"
+  ),
+  facet = list(
+    row = list(field = "kit", type = "nominal", title = NULL),
+    column = list(field = "region", type = "nominal", title = NULL)
+  ),
+  spec = list(
+    width = 110,
+    height = 90,
+    layer = list(
+      list(
+        mark = list(type = "line", color = "#bbb", strokeWidth = 1.5),
+        encoding = list(
+          x = list(field = "id", type = "nominal", sort = list("A", "B")),
+          y = list(
+            field = "genetic share",
+            type = "quantitative",
+            scale = list(domain = list(0, 1))
+          ),
+          detail = list(field = "pair", type = "ordinal")
+        )
+      ),
+      list(
+        mark = list(type = "point", filled = TRUE, size = 60, color = "#4e79a7"),
+        encoding = list(
+          x = list(field = "id", type = "nominal", sort = list("A", "B"), title = "Twin"),
+          y = list(
+            field = "genetic share",
+            type = "quantitative",
+            title = "Genetic Share",
+            axis = list(format = "%"),
+            scale = list(domain = list(0, 1))
+          ),
+          tooltip = list(
+            list(field = "twin", title = "Individual"),
+            list(field = "kit", title = "Kit"),
+            list(field = "region", title = "Region"),
+            list(field = "genetic share", title = "Genetic Share", format = ".1%")
+          )
+        )
+      )
+    )
+  )
+))
+
+spec
+```
+
+# Chart 2 – Comparing Kits:
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(url = "https://calvin-data304.netlify.app/data/twins-genetics-long.json"),
+  title = list(
+    text = "Does It Matter Which DNA Kit You Use?",
+    subtitle = "Each line tracks one twin pair across three kits. Flat = kits agreed; steep = they didn't.",
+    anchor = "start"
+  ),
+  facet = list(
+    field = "region",
+    type = "nominal",
+    title = NULL,
+    columns = 3
+  ),
+  spec = list(
+    width = 180,
+    height = 150,
+    transform = list(
+      list(
+        aggregate = list(
+          list(op = "mean", field = "genetic share", `as` = "avg share")
+        ),
+        groupby = list("pair", "region", "kit")
+      )
+    ),
+    layer = list(
+      list(
+        mark = list(type = "line", opacity = 0.7),
+        encoding = list(
+          x = list(
+            field = "kit",
+            type = "nominal",
+            sort = list("Ancestry", "23andMe", "MyHeritage"),
+            title = NULL,
+            axis = list(labelAngle = -25)
+          ),
+          y = list(
+            field = "avg share",
+            type = "quantitative",
+            title = "Avg. Genetic Share",
+            axis = list(format = "%"),
+            scale = list(domain = list(0, 1))
+          ),
+          color = list(
+            field = "pair",
+            type = "nominal",
+            scale = list(scheme = "tableau10"),
+            legend = list(title = "Twin Pair")
+          ),
+          tooltip = list(
+            list(field = "pair", title = "Twin Pair"),
+            list(field = "kit", title = "Kit"),
+            list(field = "avg share", title = "Avg Genetic Share", format = ".1%")
+          )
+        )
+      ),
+      list(
+        mark = list(type = "point", filled = TRUE, size = 60),
+        encoding = list(
+          x = list(
+            field = "kit",
+            type = "nominal",
+            sort = list("Ancestry", "23andMe", "MyHeritage")
+          ),
+          y = list(field = "avg share", type = "quantitative"),
+          color = list(field = "pair", type = "nominal", scale = list(scheme = "tableau10"))
+        )
+      )
+    )
+  )
+))
+
+spec
+```
+
+# d.
+
+Chart 1 – Comparing Twins:
+Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.
+
+Chart 2 – Comparing Kits:
+Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.
+
+## Exercise 2.
+
+## Exercise 3.
+
+# b.
+
+```{r}
+#| code-fold: true
+library(vegawidget)
+
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(url = "data/tanzania.json"),
+  title = list(
+    text = "Family Planning Trends in Tanzania, 1991-2015",
+    subtitle = "Contraception use rose sharply while fertility declined and unmet need barely budged.",
+    anchor = "start"
+  ),
+  transform = list(
+    list(
+      fold = list("fertility_rate", "contraception_pct", "unmet_need_pct"),
+      `as` = list("indicator", "value")
+    ),
+    list(
+      calculate = "indicator === 'fertility_rate' ? 'Fertility Rate (avg. children)' : indicator === 'contraception_pct' ? 'Contraception Use (%)' : 'Unmet Need for Family Planning (%)'",
+      `as` = "indicator_label"
+    )
+  ),
+  facet = list(
+    field = "indicator_label",
+    type = "nominal",
+    title = NULL,
+    sort = list("Fertility Rate (avg. children)", "Contraception Use (%)", "Unmet Need for Family Planning (%)")
+  ),
+  spec = list(
+    width = 200,
+    height = 150,
+    layer = list(
+      list(
+        mark = list(type = "line", point = TRUE, color = "#4e79a7")
+      ),
+      list(
+        mark = list(type = "point", filled = TRUE, size = 60, color = "#4e79a7")
+      )
+    ),
+    encoding = list(
+      x = list(
+        field = "year",
+        type = "ordinal",
+        title = "Survey Year",
+        axis = list(labelAngle = -30)
+      ),
+      y = list(
+        field = "value",
+        type = "quantitative",
+        title = NULL,
+        scale = list(zero = FALSE)
+      ),
+      tooltip = list(
+        list(field = "year", title = "Year"),
+        list(field = "indicator_label", title = "Indicator"),
+        list(field = "value", title = "Value")
+      )
+    )
+  ),
+  resolve = list(scale = list(y = "independent"))
+))
+
+spec
+```
+

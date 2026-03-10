@@ -1,0 +1,197 @@
+---
+title: "A Year in Review"
+format: revealjs
+engine: knitr
+---
+
+---
+title: "A Year in Review"
+format: revealjs
+engine: knitr
+---
+
+## Demand Was Steady All Year
+
+Ticket volume stayed consistent between 6,000 and 7,500 tickets per month.
+No major spikes or drops — the team dealt with a predictable workload.
+```{r}
+#| code-fold: true
+library(vegawidget)
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(values = list(
+    list(month = "JAN", in_person = 1499, email = 1567, telephone = 1801, webform = 841),
+    list(month = "FEB", in_person = 2008, email = 2356, telephone = 2503, webform = 949),
+    list(month = "MAR", in_person = 1710, email = 2006, telephone = 2245, webform = 965),
+    list(month = "APR", in_person = 1904, email = 2134, telephone = 2203, webform = 978),
+    list(month = "MAY", in_person = 1849, email = 2019, telephone = 2345, webform = 947),
+    list(month = "JUN", in_person = 1734, email = 2234, telephone = 2198, webform = 730),
+    list(month = "JUL", in_person = 1719, email = 2765, telephone = 1986, webform = 937),
+    list(month = "AUG", in_person = 1645, email = 2434, telephone = 1767, webform = 930),
+    list(month = "SEP", in_person = 1608, email = 2309, telephone = 1999, webform = 1074),
+    list(month = "OCT", in_person = 1511, email = 2009, telephone = 1576, webform = 1152),
+    list(month = "NOV", in_person = 1423, email = 2309, telephone = 2005, webform = 1483),
+    list(month = "DEC", in_person = 1395, email = 2249, telephone = 1989, webform = 1330)
+  )),
+  title = list(text = "Monthly Ticket Volume by Channel", anchor = "start"),
+  transform = list(
+    list(
+      fold = list("in_person", "email", "telephone", "webform"),
+      `as` = list("channel", "count")
+    )
+  ),
+  mark = list(type = "bar"),
+  encoding = list(
+    x = list(field = "month", type = "ordinal", sort = list("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"), title = NULL),
+    y = list(field = "count", type = "quantitative", title = "Ticket Count"),
+    color = list(
+      field = "channel",
+      type = "nominal",
+      scale = list(
+        domain = list("in_person", "email", "telephone", "webform"),
+        range = list("#c0392b", "#2c3e50", "#2980b9", "#27ae60")
+      ),
+      legend = list(title = "Channel")
+    ),
+    tooltip = list(
+      list(field = "month", title = "Month"),
+      list(field = "channel", title = "Channel"),
+      list(field = "count", title = "Tickets")
+    )
+  )
+))
+spec
+```
+
+## Inventory Was Mostly Under Control
+
+Ticket volume stayed consistent between 6,000 and 7,500 tickets per month.
+No major spikes or drops. The team dealt with a predictable workload all year.
+```{r}
+#| code-fold: true
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(values = list(
+    list(month = "JAN", requests = 461, orders = 904, pending = 47, unprocessed = 21),
+    list(month = "FEB", requests = 485, orders = 951, pending = 79, unprocessed = 201),
+    list(month = "MAR", requests = 489, orders = 984, pending = 12, unprocessed = 10),
+    list(month = "APR", requests = 402, orders = 950, pending = 15, unprocessed = 13),
+    list(month = "MAY", requests = 405, orders = 1104, pending = 350, unprocessed = 22),
+    list(month = "JUN", requests = 369, orders = 1110, pending = 67, unprocessed = 9),
+    list(month = "JUL", requests = 445, orders = 1006, pending = 11, unprocessed = 5),
+    list(month = "AUG", requests = 457, orders = 1124, pending = 70, unprocessed = 69),
+    list(month = "SEP", requests = 441, orders = 979, pending = 19, unprocessed = 35),
+    list(month = "OCT", requests = 511, orders = 812, pending = 12, unprocessed = 11),
+    list(month = "NOV", requests = 544, orders = 1189, pending = 242, unprocessed = 110),
+    list(month = "DEC", requests = 503, orders = 1039, pending = 139, unprocessed = 7)
+  )),
+  title = list(text = "Work-In-Process Inventory at Month-End", anchor = "start"),
+  layer = list(
+    list(
+      transform = list(
+        list(fold = list("requests", "orders", "pending", "unprocessed"), `as` = list("type", "count"))
+      ),
+      mark = list(type = "bar"),
+      encoding = list(
+        x = list(field = "month", type = "ordinal", sort = list("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"), title = NULL),
+        y = list(field = "count", type = "quantitative", title = "Count"),
+        color = list(field = "type", type = "nominal", legend = list(title = "Type"))
+      )
+    ),
+    list(
+      mark = list(type = "rule", color = "red", strokeWidth = 2),
+      data = list(values = list(list(target = 1700))),
+      encoding = list(y = list(field = "target", type = "quantitative"))
+    )
+  )
+))
+spec
+```
+
+## Service Levels Improved Dramatically {background-color="#f0f7ff"}
+
+The team started the year at 82% and finished at 97%, well above the 90% goal.
+This is the clearest sign of improvement across the whole year.
+```{r}
+#| code-fold: true
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(values = list(
+    list(month = "JAN", result = 0.82, goal = 0.90),
+    list(month = "FEB", result = 0.84, goal = 0.90),
+    list(month = "MAR", result = 0.87, goal = 0.90),
+    list(month = "APR", result = 0.85, goal = 0.90),
+    list(month = "MAY", result = 0.88, goal = 0.90),
+    list(month = "JUN", result = 0.88, goal = 0.90),
+    list(month = "JUL", result = 0.89, goal = 0.90),
+    list(month = "AUG", result = 0.90, goal = 0.90),
+    list(month = "SEP", result = 0.91, goal = 0.90),
+    list(month = "OCT", result = 0.93, goal = 0.90),
+    list(month = "NOV", result = 0.95, goal = 0.90),
+    list(month = "DEC", result = 0.97, goal = 0.90)
+  )),
+  title = list(text = "% of Requests Within Standard Service Levels", anchor = "start"),
+  layer = list(
+    list(
+      mark = list(type = "line", point = TRUE, color = "#2980b9", strokeWidth = 2),
+      encoding = list(
+        x = list(field = "month", type = "ordinal", sort = list("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"), title = NULL),
+        y = list(field = "result", type = "quantitative", axis = list(format = "%"), scale = list(domain = list(0, 1)), title = "% Within SLA"),
+        tooltip = list(
+          list(field = "month", title = "Month"),
+          list(field = "result", title = "Result", format = ".0%")
+        )
+      )
+    ),
+    list(
+      mark = list(type = "rule", color = "red", strokeDash = list(4, 2)),
+      encoding = list(y = list(field = "goal", type = "quantitative"))
+    )
+  )
+))
+spec
+```
+
+## Front Office Stayed Reachable All Year
+
+Reachability exceeded the 90% goal every single month without exception.
+The slight dip toward year end is worth watching but still well above target.
+```{r}
+#| code-fold: true
+spec <- as_vegaspec(list(
+  `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  data = list(values = list(
+    list(month = "JAN", reachability = 0.992, goal = 0.90),
+    list(month = "FEB", reachability = 0.995, goal = 0.90),
+    list(month = "MAR", reachability = 0.991, goal = 0.90),
+    list(month = "APR", reachability = 0.989, goal = 0.90),
+    list(month = "MAY", reachability = 0.984, goal = 0.90),
+    list(month = "JUN", reachability = 0.985, goal = 0.90),
+    list(month = "JUL", reachability = 0.987, goal = 0.90),
+    list(month = "AUG", reachability = 0.989, goal = 0.90),
+    list(month = "SEP", reachability = 0.988, goal = 0.90),
+    list(month = "OCT", reachability = 0.985, goal = 0.90),
+    list(month = "NOV", reachability = 0.979, goal = 0.90),
+    list(month = "DEC", reachability = 0.971, goal = 0.90)
+  )),
+  title = list(text = "Front Office Reachability vs Goal", anchor = "start"),
+  layer = list(
+    list(
+      mark = list(type = "line", point = TRUE, color = "#2c3e50", strokeWidth = 2),
+      encoding = list(
+        x = list(field = "month", type = "ordinal", sort = list("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"), title = NULL),
+        y = list(field = "reachability", type = "quantitative", axis = list(format = "%"), scale = list(domain = list(0.90, 1)), title = "Reachability %"),
+        tooltip = list(
+          list(field = "month", title = "Month"),
+          list(field = "reachability", title = "Reachability", format = ".1%")
+        )
+      )
+    ),
+    list(
+      mark = list(type = "rule", color = "red", strokeDash = list(4, 2)),
+      encoding = list(y = list(field = "goal", type = "quantitative"))
+    )
+  )
+))
+spec
+```
