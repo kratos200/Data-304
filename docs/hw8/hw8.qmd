@@ -11,9 +11,9 @@ This is where I'll complete the exercises for Homework 8.
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = list(text = "Supply and Demand Over Time", anchor = "start"),
   data = list(
     url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
   ),
@@ -25,16 +25,26 @@ spec <- as_vegaspec(list(
   ),
   mark = "bar",
   encoding = list(
-    x = list(field = "date", type = "ordinal"),
-    y = list(field = "value", type = "quantitative"),
+    x = list(
+      field = "date",
+      type = "temporal",
+      timeUnit = "yearmonth",
+      title = NULL,
+      axis = list(format = "%b %Y", labelAngle = -45)
+    ),
+    y = list(field = "value", type = "quantitative", title = "Value"),
     xOffset = list(field = "type"),
     color = list(
       field = "type",
-      scale = list(range = list("#5B9BD5", "#A5A5A5"))
+      title = "Type",
+      scale = list(
+        domain = list("capacity", "demand"),
+        range = list("#5B9BD5", "#8FAADC")
+      ),
+      legend = list(title = "Type")
     )
   )
 ))
-
 spec
 ```
 
@@ -43,9 +53,9 @@ spec
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = list(text = "Supply and Demand Over Time", anchor = "start"),
   data = list(
     url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
   ),
@@ -57,22 +67,35 @@ spec <- as_vegaspec(list(
   ),
   mark = "line",
   encoding = list(
-    x = list(field = "date", type = "ordinal"),
-    y = list(field = "value", type = "quantitative"),
-    color = list(field = "type")
+    x = list(
+      field = "date",
+      type = "temporal",
+      timeUnit = "yearmonth",
+      title = NULL,
+      axis = list(format = "%b %Y", labelAngle = -45)
+    ),
+    y = list(field = "value", type = "quantitative", title = "Value"),
+    color = list(
+      field = "type",
+      title = "Type",
+      scale = list(
+        domain = list("capacity", "demand"),
+        range = list("#5B9BD5", "#E07B39")
+      )
+    )
   )
 ))
-
 spec
 ```
+
 
 
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = list(text = "Capacity vs Demand Over Time", anchor = "start"),
   width = 600,
   height = 350,
   data = list(
@@ -92,10 +115,7 @@ spec <- as_vegaspec(list(
     )
   ),
   transform = list(
-    list(
-      calculate = "toDate(datum.date + '-01')",
-      `as` = "parsed_date"
-    )
+    list(calculate = "toDate(datum.date + '-01')", `as` = "parsed_date")
   ),
   layer = list(
     list(
@@ -104,31 +124,20 @@ spec <- as_vegaspec(list(
         x = list(
           field = "parsed_date",
           type = "temporal",
-          axis = list(title = NULL)
+          axis = list(title = NULL, format = "%b %Y", labelAngle = -45)
         ),
-        y = list(
-          field = "demand",
-          type = "quantitative",
-          axis = list(title = NULL)
-        )
+        y = list(field = "demand", type = "quantitative", axis = list(title = NULL))
       )
     ),
     list(
       mark = list(type = "bar", color = "#08519c", size = 20),
       encoding = list(
-        x = list(
-          field = "parsed_date",
-          type = "temporal"
-        ),
-        y = list(
-          field = "capacity",
-          type = "quantitative"
-        )
+        x = list(field = "parsed_date", type = "temporal"),
+        y = list(field = "capacity", type = "quantitative")
       )
     )
   )
 ))
-
 spec
 ```
 
@@ -137,9 +146,9 @@ spec
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = list(text = "Capacity vs Demand Over Time", anchor = "start"),
   data = list(
     url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
   ),
@@ -147,15 +156,21 @@ spec <- as_vegaspec(list(
     list(
       mark = "bar",
       encoding = list(
-        x = list(field = "date", type = "ordinal"),
-        y = list(field = "capacity", type = "quantitative"),
+        x = list(
+          field = "date",
+          type = "temporal",
+          timeUnit = "yearmonth",
+          title = NULL,
+          axis = list(format = "%b %Y", labelAngle = -45)
+        ),
+        y = list(field = "capacity", type = "quantitative", title = NULL),
         color = list(value = "#A5A5A5")
       )
     ),
     list(
       mark = "bar",
       encoding = list(
-        x = list(field = "date", type = "ordinal"),
+        x = list(field = "date", type = "temporal", timeUnit = "yearmonth"),
         y = list(field = "demand", type = "quantitative"),
         color = list(value = "#5B9BD5"),
         opacity = list(value = 0.8)
@@ -163,17 +178,18 @@ spec <- as_vegaspec(list(
     )
   )
 ))
-
 spec
 ```
+
+
 
 
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = list(text = "Capacity vs Demand Over Time", anchor = "start"),
   width = 600,
   height = 350,
   data = list(
@@ -193,25 +209,18 @@ spec <- as_vegaspec(list(
     )
   ),
   transform = list(
-    list(
-      calculate = "toDate(datum.date + '-01')",
-      `as` = "parsed_date"
-    )
+    list(calculate = "toDate(datum.date + '-01')", `as` = "parsed_date")
   ),
   layer = list(
     list(
-      mark = list(type = "rule", stroke = "#9ecae1", strokeWidth = 2),
+      mark = list(type = "rule", stroke = "#9ecae1", strokeWidth = 4),
       encoding = list(
         x = list(
           field = "parsed_date",
           type = "temporal",
-          axis = list(title = NULL)
+          axis = list(title = NULL, format = "%b %Y", labelAngle = -45)
         ),
-        y = list(
-          field = "capacity",
-          type = "quantitative",
-          axis = list(title = NULL)
-        ),
+        y = list(field = "capacity", type = "quantitative", axis = list(title = NULL)),
         y2 = list(field = "demand")
       )
     ),
@@ -230,11 +239,8 @@ spec <- as_vegaspec(list(
       )
     )
   ),
-  config = list(
-    axis = list(grid = FALSE)
-  )
+  config = list(axis = list(grid = FALSE))
 ))
-
 spec
 ```
 
@@ -243,25 +249,26 @@ spec
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
+  title = list(text = "Unmet Demand Over Time", anchor = "start"),
   data = list(
     url = "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
   ),
   transform = list(
-    list(
-      calculate = "datum.demand - datum.capacity",
-      `as` = "unmet"
-    )
+    list(calculate = "datum.demand - datum.capacity", `as` = "unmet"),
+    list(calculate = "toDate(datum.date + '-01')", `as` = "parsed_date")
   ),
   mark = "line",
   encoding = list(
-    x = list(field = "date", type = "ordinal"),
-    y = list(field = "unmet", type = "quantitative")
+    x = list(
+      field = "parsed_date",
+      type = "temporal",
+      axis = list(title = NULL, format = "%b %Y", labelAngle = -45)
+    ),
+    y = list(field = "unmet", type = "quantitative", title = "Unmet Demand")
   )
 ))
-
 spec
 ```
 
@@ -304,14 +311,13 @@ spec <- as_vegaspec(list(
 spec
 ```
 
-perc is the proportion of all workers of that sex working in that job in that year.
+Perc is the proportion of all workers of that sex who work in that job. So for men, the denominator is all male workers, and for women it's all female workers.
 
 
 # b.
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
   data = list(
@@ -328,9 +334,13 @@ spec <- as_vegaspec(list(
     )
   ),
   facet = list(
-    column = list(field = "year", type = "ordinal")
+    field = "year",
+    type = "ordinal",
+    columns = 2
   ),
   spec = list(
+    width = 150,
+    height = 150,
     mark = "point",
     encoding = list(
       x = list(
@@ -350,7 +360,6 @@ spec <- as_vegaspec(list(
   ),
   title = "Percent of men and women working in each job"
 ))
-
 spec
 ```
 
@@ -358,60 +367,46 @@ spec
 ```{r}
 #| code-fold: true
 library(vegawidget)
-
 spec <- as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
   data = list(
     url = "https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"
   ),
   transform = list(
-    list(
-      filter = list(field = "year", oneOf = list(1850, 1900, 1950, 2000))
-    ),
-    list(
-      joinaggregate = list(
-        list(
-          op = "sum",
-          field = "perc",
-          `as` = "job_total"
-        )
-      ),
-      groupby = list("job", "year")
-    ),
-    list(
-      calculate = "datum.perc / datum.job_total",
-      `as` = "within_job_percent"
-    ),
+    list(filter = list(field = "year", oneOf = list(1850, 1900, 1950, 2000))),
     list(
       pivot = "sex",
-      value = "within_job_percent",
+      value = "perc",
       groupby = list("job", "year")
     )
   ),
   facet = list(
-    column = list(field = "year", type = "ordinal")
+    field = "year",
+    type = "ordinal",
+    columns = 2
   ),
   spec = list(
+    width = 150,
+    height = 150,
     mark = "point",
     encoding = list(
       x = list(
         field = "men",
         type = "quantitative",
         axis = list(format = ".0%"),
-        title = "% of job that is men"
+        title = "% of men working in this job"
       ),
       y = list(
         field = "women",
         type = "quantitative",
         axis = list(format = ".0%"),
-        title = "% of job that is women"
+        title = "% of women working in this job"
       ),
       tooltip = list(list(field = "job"))
     )
   ),
-  title = "Gender composition within each job"
+  title = "Percentage of men and women working in each job"
 ))
-
 spec
 ```
 
@@ -446,9 +441,15 @@ plot_data <- gas_recent |>
 
 as_vegaspec(list(
   `$schema` = "https://vega.github.io/schema/vega-lite/v5.json",
-  title = "Gas prices around the world (USD per gallon), most recent year available",
+  title = list(
+    text = "Gas Prices Around the World (USD per gallon)",
+    subtitle = "Most recent year available. Each dot is one country.",
+    anchor = "start"
+  ),
   data = list(values = plot_data),
-  mark = list(type = "bar"),
+  width = 500,
+  height = 300,
+  mark = list(type = "point", filled = TRUE, opacity = 0.7),
   encoding = list(
     x = list(
       field = "price_per_gallon",
@@ -457,25 +458,23 @@ as_vegaspec(list(
       axis = list(format = "$,.2f")
     ),
     y = list(
-      field = "code",
+      field = "region",
       type = "nominal",
       title = NULL,
-      sort = list(field = "price_per_gallon", order = "descending"),
-      axis = list(labels = FALSE, ticks = FALSE)
+      sort = list(field = "price_per_gallon", op = "median", order = "descending")
     ),
     color = list(
       field = "region",
       type = "nominal",
-      title = "Region"
+      legend = NULL
     ),
     tooltip = list(
-      list(field = "country", type = "nominal"),
+      list(field = "country", type = "nominal", title = "Country"),
       list(field = "code", type = "nominal", title = "Code"),
-      list(field = "region", type = "nominal"),
       list(field = "price_per_gallon", type = "quantitative", title = "USD/gallon", format = "$.2f")
     )
-  ),
-  width = 500,
-  height = 800
+  )
 ))
 ```
+
+This strip plot shows that European and Oceanian countries tend to pay more for gas while Asian and African countries show much more variation, with some paying very little, likely due to government subsidies. The Americas cluster in the middle range.

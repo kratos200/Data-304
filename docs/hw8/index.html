@@ -111,9 +111,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Supply and Demand Over Time"</span>, <span class="at">anchor =</span> <span class="st">"start"</span>),</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
@@ -125,23 +125,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark =</span> <span class="st">"bar"</span>,</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">xOffset =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"type"</span>),</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">list</span>(</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"type"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale =</span> <span class="fu">list</span>(<span class="at">range =</span> <span class="fu">list</span>(<span class="st">"#5B9BD5"</span>, <span class="st">"#A5A5A5"</span>))</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"date"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">timeUnit =</span> <span class="st">"yearmonth"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"%b %Y"</span>, <span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">45</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="st">"Value"</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">xOffset =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"type"</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">list</span>(</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"type"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Type"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale =</span> <span class="fu">list</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">domain =</span> <span class="fu">list</span>(<span class="st">"capacity"</span>, <span class="st">"demand"</span>),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="fu">list</span>(<span class="st">"#5B9BD5"</span>, <span class="st">"#8FAADC"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Type"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-091e96034b0eeb27a904" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-091e96034b0eeb27a904">{"x":{
+<div id="htmlwidget-7cd5c01dcba60d0c1d09" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7cd5c01dcba60d0c1d09">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Supply and Demand Over Time",
+      "anchor": "start"
+    },
     "data": {
       "url": "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
     },
@@ -161,22 +175,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "encoding": {
       "x": {
         "field": "date",
-        "type": "ordinal"
+        "type": "temporal",
+        "timeUnit": "yearmonth",
+        "title": null,
+        "axis": {
+          "format": "%b %Y",
+          "labelAngle": -45
+        }
       },
       "y": {
         "field": "value",
-        "type": "quantitative"
+        "type": "quantitative",
+        "title": "Value"
       },
       "xOffset": {
         "field": "type"
       },
       "color": {
         "field": "type",
+        "title": "Type",
         "scale": {
+          "domain": [
+            "capacity",
+            "demand"
+          ],
           "range": [
             "#5B9BD5",
-            "#A5A5A5"
+            "#8FAADC"
           ]
+        },
+        "legend": {
+          "title": "Type"
         }
       }
     }
@@ -192,9 +221,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Supply and Demand Over Time"</span>, <span class="at">anchor =</span> <span class="st">"start"</span>),</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
@@ -206,19 +235,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark =</span> <span class="st">"line"</span>,</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>),</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"type"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"date"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">timeUnit =</span> <span class="st">"yearmonth"</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"%b %Y"</span>, <span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">45</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"value"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="st">"Value"</span>),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">list</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"type"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Type"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">scale =</span> <span class="fu">list</span>(</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">domain =</span> <span class="fu">list</span>(<span class="st">"capacity"</span>, <span class="st">"demand"</span>),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="fu">list</span>(<span class="st">"#5B9BD5"</span>, <span class="st">"#E07B39"</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-e6ced11b380818c71117" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e6ced11b380818c71117">{"x":{
+<div id="htmlwidget-76b3e2c31a3e732256ce" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-76b3e2c31a3e732256ce">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Supply and Demand Over Time",
+      "anchor": "start"
+    },
     "data": {
       "url": "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
     },
@@ -238,14 +283,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "encoding": {
       "x": {
         "field": "date",
-        "type": "ordinal"
+        "type": "temporal",
+        "timeUnit": "yearmonth",
+        "title": null,
+        "axis": {
+          "format": "%b %Y",
+          "labelAngle": -45
+        }
       },
       "y": {
         "field": "value",
-        "type": "quantitative"
+        "type": "quantitative",
+        "title": "Value"
       },
       "color": {
-        "field": "type"
+        "field": "type",
+        "title": "Type",
+        "scale": {
+          "domain": [
+            "capacity",
+            "demand"
+          ],
+          "range": [
+            "#5B9BD5",
+            "#E07B39"
+          ]
+        }
       }
     }
   },
@@ -260,9 +323,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Capacity vs Demand Over Time"</span>, <span class="at">anchor =</span> <span class="st">"start"</span>),</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">600</span>,</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">350</span>,</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
@@ -282,50 +345,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  ),</span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"toDate(datum.date + '-01')"</span>,</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"parsed_date"</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">layer =</span> <span class="fu">list</span>(</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">color =</span> <span class="st">"#c6dbef"</span>),</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"parsed_date"</span>,</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>)</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"demand"</span>,</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>)</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">calculate =</span> <span class="st">"toDate(datum.date + '-01')"</span>, <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"parsed_date"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">color =</span> <span class="st">"#c6dbef"</span>),</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"parsed_date"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">format =</span> <span class="st">"%b %Y"</span>, <span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">45</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"demand"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>))</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">color =</span> <span class="st">"#08519c"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"parsed_date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>),</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"capacity"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>)</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">color =</span> <span class="st">"#08519c"</span>, <span class="at">size =</span> <span class="dv">20</span>),</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"parsed_date"</span>,</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"temporal"</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"capacity"</span>,</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"quantitative"</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-1349613233b737d0028f" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1349613233b737d0028f">{"x":{
+<div id="htmlwidget-83df5a3b0e3abf09d4df" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-83df5a3b0e3abf09d4df">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Capacity vs Demand Over Time",
+      "anchor": "start"
+    },
     "width": 600,
     "height": 350,
     "data": {
@@ -409,7 +462,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             "field": "parsed_date",
             "type": "temporal",
             "axis": {
-              "title": null
+              "title": null,
+              "format": "%b %Y",
+              "labelAngle": -45
             }
           },
           "y": {
@@ -451,9 +506,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Capacity vs Demand Over Time"</span>, <span class="at">anchor =</span> <span class="st">"start"</span>),</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
@@ -461,30 +516,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="st">"bar"</span>,</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>),</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"capacity"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">list</span>(<span class="at">value =</span> <span class="st">"#A5A5A5"</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="st">"bar"</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>),</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"demand"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">list</span>(<span class="at">value =</span> <span class="st">"#5B9BD5"</span>),</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">opacity =</span> <span class="fu">list</span>(<span class="at">value =</span> <span class="fl">0.8</span>)</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"date"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">timeUnit =</span> <span class="st">"yearmonth"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"%b %Y"</span>, <span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">45</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"capacity"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="cn">NULL</span>),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">list</span>(<span class="at">value =</span> <span class="st">"#A5A5A5"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="st">"bar"</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>, <span class="at">timeUnit =</span> <span class="st">"yearmonth"</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"demand"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="fu">list</span>(<span class="at">value =</span> <span class="st">"#5B9BD5"</span>),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">opacity =</span> <span class="fu">list</span>(<span class="at">value =</span> <span class="fl">0.8</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-e5048bb4f08e8208b8e0" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e5048bb4f08e8208b8e0">{"x":{
+<div id="htmlwidget-463eb3fbd0438dcaf949" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-463eb3fbd0438dcaf949">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Capacity vs Demand Over Time",
+      "anchor": "start"
+    },
     "data": {
       "url": "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
     },
@@ -494,11 +558,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         "encoding": {
           "x": {
             "field": "date",
-            "type": "ordinal"
+            "type": "temporal",
+            "timeUnit": "yearmonth",
+            "title": null,
+            "axis": {
+              "format": "%b %Y",
+              "labelAngle": -45
+            }
           },
           "y": {
             "field": "capacity",
-            "type": "quantitative"
+            "type": "quantitative",
+            "title": null
           },
           "color": {
             "value": "#A5A5A5"
@@ -510,7 +581,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         "encoding": {
           "x": {
             "field": "date",
-            "type": "ordinal"
+            "type": "temporal",
+            "timeUnit": "yearmonth"
           },
           "y": {
             "field": "demand",
@@ -537,9 +609,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Capacity vs Demand Over Time"</span>, <span class="at">anchor =</span> <span class="st">"start"</span>),</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">600</span>,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">350</span>,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
@@ -559,55 +631,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  ),</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"toDate(datum.date + '-01')"</span>,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"parsed_date"</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">layer =</span> <span class="fu">list</span>(</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"rule"</span>, <span class="at">stroke =</span> <span class="st">"#9ecae1"</span>, <span class="at">strokeWidth =</span> <span class="dv">2</span>),</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"parsed_date"</span>,</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>)</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"capacity"</span>,</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>)</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">y2 =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"demand"</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">calculate =</span> <span class="st">"toDate(datum.date + '-01')"</span>, <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"parsed_date"</span>)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">layer =</span> <span class="fu">list</span>(</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"rule"</span>, <span class="at">stroke =</span> <span class="st">"#9ecae1"</span>, <span class="at">strokeWidth =</span> <span class="dv">4</span>),</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"parsed_date"</span>,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">format =</span> <span class="st">"%b %Y"</span>, <span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">45</span>)</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"capacity"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>)),</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">y2 =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"demand"</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color =</span> <span class="st">"#08519c"</span>),</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"parsed_date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>),</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"capacity"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>)</span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">color =</span> <span class="st">"#08519c"</span>),</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">FALSE</span>, <span class="at">stroke =</span> <span class="st">"#3182bd"</span>, <span class="at">strokeWidth =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="dv">150</span>),</span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"parsed_date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>),</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"capacity"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"demand"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>)</span>
 <span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>      <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">FALSE</span>, <span class="at">stroke =</span> <span class="st">"#3182bd"</span>, <span class="at">strokeWidth =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="dv">150</span>),</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"parsed_date"</span>, <span class="at">type =</span> <span class="st">"temporal"</span>),</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"demand"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>)</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">config =</span> <span class="fu">list</span>(</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">grid =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">config =</span> <span class="fu">list</span>(<span class="at">axis =</span> <span class="fu">list</span>(<span class="at">grid =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-98bf92ce4ab3787f00b7" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-98bf92ce4ab3787f00b7">{"x":{
+<div id="htmlwidget-20e6dc5827830ee5e60c" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-20e6dc5827830ee5e60c">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Capacity vs Demand Over Time",
+      "anchor": "start"
+    },
     "width": 600,
     "height": 350,
     "data": {
@@ -685,14 +751,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         "mark": {
           "type": "rule",
           "stroke": "#9ecae1",
-          "strokeWidth": 2
+          "strokeWidth": 4
         },
         "encoding": {
           "x": {
             "field": "parsed_date",
             "type": "temporal",
             "axis": {
-              "title": null
+              "title": null,
+              "format": "%b %Y",
+              "labelAngle": -45
             }
           },
           "y": {
@@ -762,32 +830,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Unmet Demand Over Time"</span>, <span class="at">anchor =</span> <span class="st">"start"</span>),</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"datum.demand - datum.capacity"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"unmet"</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark =</span> <span class="st">"line"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"date"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>),</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"unmet"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">calculate =</span> <span class="st">"datum.demand - datum.capacity"</span>, <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"unmet"</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">calculate =</span> <span class="st">"toDate(datum.date + '-01')"</span>, <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"parsed_date"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark =</span> <span class="st">"line"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"parsed_date"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"temporal"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="cn">NULL</span>, <span class="at">format =</span> <span class="st">"%b %Y"</span>, <span class="at">labelAngle =</span> <span class="sc">-</span><span class="dv">45</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"unmet"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="st">"Unmet Demand"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-5eab6b56659ddf4bbc03" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5eab6b56659ddf4bbc03">{"x":{
+<div id="htmlwidget-688a6b2d07bc47172d7a" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-688a6b2d07bc47172d7a">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+      "text": "Unmet Demand Over Time",
+      "anchor": "start"
+    },
     "data": {
       "url": "https://calvin-data304.netlify.app/data/swd-lets-practice-ex-2-3.json"
     },
@@ -795,17 +868,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       {
         "calculate": "datum.demand - datum.capacity",
         "as": "unmet"
+      },
+      {
+        "calculate": "toDate(datum.date + '-01')",
+        "as": "parsed_date"
       }
     ],
     "mark": "line",
     "encoding": {
       "x": {
-        "field": "date",
-        "type": "ordinal"
+        "field": "parsed_date",
+        "type": "temporal",
+        "axis": {
+          "title": null,
+          "format": "%b %Y",
+          "labelAngle": -45
+        }
       },
       "y": {
         "field": "unmet",
-        "type": "quantitative"
+        "type": "quantitative",
+        "title": "Unmet Demand"
       }
     }
   },
@@ -858,8 +941,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-126e9c3106f7c3bff686" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-126e9c3106f7c3bff686">{"x":{
+<div id="htmlwidget-11a8a51d6c809ac4a5a7" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-11a8a51d6c809ac4a5a7">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 400,
@@ -897,7 +980,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>perc is the proportion of all workers of that sex working in that job in that year.</p>
+<p>Perc is the proportion of all workers of that sex who work in that job. So for men, the denominator is all male workers, and for women it’s all female workers.</p>
 </section>
 <section id="b." class="level1">
 <h1>b.</h1>
@@ -905,51 +988,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">filter =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">oneOf =</span> <span class="fu">list</span>(<span class="dv">1850</span>, <span class="dv">1900</span>, <span class="dv">1950</span>, <span class="dv">2000</span>))</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">pivot =</span> <span class="st">"sex"</span>,</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> <span class="st">"perc"</span>,</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">groupby =</span> <span class="fu">list</span>(<span class="st">"job"</span>, <span class="st">"year"</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">column =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">mark =</span> <span class="st">"point"</span>,</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"men"</span>,</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of men in job"</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"women"</span>,</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of women in job"</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">field =</span> <span class="st">"job"</span>))</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Percent of men and women working in each job"</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">filter =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">oneOf =</span> <span class="fu">list</span>(<span class="dv">1850</span>, <span class="dv">1900</span>, <span class="dv">1950</span>, <span class="dv">2000</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">pivot =</span> <span class="st">"sex"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> <span class="st">"perc"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">groupby =</span> <span class="fu">list</span>(<span class="st">"job"</span>, <span class="st">"year"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"year"</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"ordinal"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">2</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">150</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">mark =</span> <span class="st">"point"</span>,</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"men"</span>,</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of men in job"</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"women"</span>,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of women in job"</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">field =</span> <span class="st">"job"</span>))</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Percent of men and women working in each job"</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-b361ae76cda1e046fae9" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b361ae76cda1e046fae9">{"x":{
+<div id="htmlwidget-b93abbf0da17a392b0fc" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b93abbf0da17a392b0fc">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
@@ -977,12 +1062,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     ],
     "facet": {
-      "column": {
-        "field": "year",
-        "type": "ordinal"
-      }
+      "field": "year",
+      "type": "ordinal",
+      "columns": 2
     },
     "spec": {
+      "width": 150,
+      "height": 150,
       "mark": "point",
       "encoding": {
         "x": {
@@ -1024,65 +1110,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegawidget)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">url =</span> <span class="st">"https://cdn.jsdelivr.net/npm/vega-datasets@2.8.0/data/jobs.json"</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="fu">list</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">filter =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">oneOf =</span> <span class="fu">list</span>(<span class="dv">1850</span>, <span class="dv">1900</span>, <span class="dv">1950</span>, <span class="dv">2000</span>))),</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">filter =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">oneOf =</span> <span class="fu">list</span>(<span class="dv">1850</span>, <span class="dv">1900</span>, <span class="dv">1950</span>, <span class="dv">2000</span>))</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">joinaggregate =</span> <span class="fu">list</span>(</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">op =</span> <span class="st">"sum"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">field =</span> <span class="st">"perc"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"job_total"</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">groupby =</span> <span class="fu">list</span>(<span class="st">"job"</span>, <span class="st">"year"</span>)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">calculate =</span> <span class="st">"datum.perc / datum.job_total"</span>,</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">as</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"within_job_percent"</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">pivot =</span> <span class="st">"sex"</span>,</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> <span class="st">"within_job_percent"</span>,</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">groupby =</span> <span class="fu">list</span>(<span class="st">"job"</span>, <span class="st">"year"</span>)</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">column =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"year"</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">mark =</span> <span class="st">"point"</span>,</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"men"</span>,</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of job that is men"</span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"women"</span>,</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of job that is women"</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">field =</span> <span class="st">"job"</span>))</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Gender composition within each job"</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">pivot =</span> <span class="st">"sex"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> <span class="st">"perc"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">groupby =</span> <span class="fu">list</span>(<span class="st">"job"</span>, <span class="st">"year"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">facet =</span> <span class="fu">list</span>(</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">field =</span> <span class="st">"year"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"ordinal"</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="dv">2</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">spec =</span> <span class="fu">list</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">150</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="dv">150</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">mark =</span> <span class="st">"point"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"men"</span>,</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of men working in this job"</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">field =</span> <span class="st">"women"</span>,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">".0%"</span>),</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"% of women working in this job"</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">tooltip =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">field =</span> <span class="st">"job"</span>))</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Percentage of men and women working in each job"</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>spec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-6f2f011c041ec26bf015" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6f2f011c041ec26bf015">{"x":{
+<div id="htmlwidget-03136986b9976f6bd045" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-03136986b9976f6bd045">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
@@ -1101,25 +1173,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         }
       },
       {
-        "joinaggregate": [
-          {
-            "op": "sum",
-            "field": "perc",
-            "as": "job_total"
-          }
-        ],
-        "groupby": [
-          "job",
-          "year"
-        ]
-      },
-      {
-        "calculate": "datum.perc / datum.job_total",
-        "as": "within_job_percent"
-      },
-      {
         "pivot": "sex",
-        "value": "within_job_percent",
+        "value": "perc",
         "groupby": [
           "job",
           "year"
@@ -1127,12 +1182,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     ],
     "facet": {
-      "column": {
-        "field": "year",
-        "type": "ordinal"
-      }
+      "field": "year",
+      "type": "ordinal",
+      "columns": 2
     },
     "spec": {
+      "width": 150,
+      "height": 150,
       "mark": "point",
       "encoding": {
         "x": {
@@ -1141,7 +1197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           "axis": {
             "format": ".0%"
           },
-          "title": "% of job that is men"
+          "title": "% of men working in this job"
         },
         "y": {
           "field": "women",
@@ -1149,7 +1205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           "axis": {
             "format": ".0%"
           },
-          "title": "% of job that is women"
+          "title": "% of women working in this job"
         },
         "tooltip": [
           {
@@ -1158,7 +1214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         ]
       }
     },
-    "title": "Gender composition within each job"
+    "title": "Percentage of men and women working in each job"
   },
   "embed_options": {
     "renderer": "canvas",
@@ -1196,45 +1252,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">as_vegaspec</span>(<span class="fu">list</span>(</span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">$schema</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"https://vega.github.io/schema/vega-lite/v5.json"</span>,</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Gas prices around the world (USD per gallon), most recent year available"</span>,</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> plot_data),</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"bar"</span>),</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">encoding =</span> <span class="fu">list</span>(</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"price_per_gallon"</span>,</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Price (USD per gallon)"</span>,</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"$,.2f"</span>)</span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"code"</span>,</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">sort =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"price_per_gallon"</span>, <span class="at">order =</span> <span class="st">"descending"</span>),</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">ticks =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">list</span>(</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"region"</span>,</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Region"</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="st">"Gas Prices Around the World (USD per gallon)"</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Most recent year available. Each dot is one country."</span>,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">anchor =</span> <span class="st">"start"</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">values =</span> plot_data),</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">500</span>,</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">300</span>,</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">mark =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"point"</span>, <span class="at">filled =</span> <span class="cn">TRUE</span>, <span class="at">opacity =</span> <span class="fl">0.7</span>),</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">encoding =</span> <span class="fu">list</span>(</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"price_per_gallon"</span>,</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"quantitative"</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Price (USD per gallon)"</span>,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis =</span> <span class="fu">list</span>(<span class="at">format =</span> <span class="st">"$,.2f"</span>)</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"region"</span>,</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">sort =</span> <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"price_per_gallon"</span>, <span class="at">op =</span> <span class="st">"median"</span>, <span class="at">order =</span> <span class="st">"descending"</span>)</span>
 <span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"country"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>),</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"code"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">title =</span> <span class="st">"Code"</span>),</span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"region"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>),</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"price_per_gallon"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="st">"USD/gallon"</span>, <span class="at">format =</span> <span class="st">"$.2f"</span>)</span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">500</span>,</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">800</span></span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">list</span>(</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">field =</span> <span class="st">"region"</span>,</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> <span class="st">"nominal"</span>,</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend =</span> <span class="cn">NULL</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">tooltip =</span> <span class="fu">list</span>(</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"country"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">title =</span> <span class="st">"Country"</span>),</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"code"</span>, <span class="at">type =</span> <span class="st">"nominal"</span>, <span class="at">title =</span> <span class="st">"Code"</span>),</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">field =</span> <span class="st">"price_per_gallon"</span>, <span class="at">type =</span> <span class="st">"quantitative"</span>, <span class="at">title =</span> <span class="st">"USD/gallon"</span>, <span class="at">format =</span> <span class="st">"$.2f"</span>)</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="htmlwidget-36321405487ed8c3b362" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-36321405487ed8c3b362">{"x":{
+<div id="htmlwidget-dd4d14c1961f7d6c5ebf" style="width:auto;height:auto;" class="vegawidget-vl5 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dd4d14c1961f7d6c5ebf">{"x":{
   "chart_spec": {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Gas prices around the world (USD per gallon), most recent year available",
+    "title": {
+      "text": "Gas Prices Around the World (USD per gallon)",
+      "subtitle": "Most recent year available. Each dot is one country.",
+      "anchor": "start"
+    },
     "data": {
       "values": [
         {
@@ -2163,8 +2225,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         }
       ]
     },
+    "width": 500,
+    "height": 300,
     "mark": {
-      "type": "bar"
+      "type": "point",
+      "filled": true,
+      "opacity": 0.7
     },
     "encoding": {
       "x": {
@@ -2176,36 +2242,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         }
       },
       "y": {
-        "field": "code",
+        "field": "region",
         "type": "nominal",
         "title": null,
         "sort": {
           "field": "price_per_gallon",
+          "op": "median",
           "order": "descending"
-        },
-        "axis": {
-          "labels": false,
-          "ticks": false
         }
       },
       "color": {
         "field": "region",
         "type": "nominal",
-        "title": "Region"
+        "legend": null
       },
       "tooltip": [
         {
           "field": "country",
-          "type": "nominal"
+          "type": "nominal",
+          "title": "Country"
         },
         {
           "field": "code",
           "type": "nominal",
           "title": "Code"
-        },
-        {
-          "field": "region",
-          "type": "nominal"
         },
         {
           "field": "price_per_gallon",
@@ -2214,9 +2274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           "format": "$.2f"
         }
       ]
-    },
-    "width": 500,
-    "height": 800
+    }
   },
   "embed_options": {
     "renderer": "canvas",
@@ -2225,6 +2283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 },"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+<p>This strip plot shows that European and Oceanian countries tend to pay more for gas while Asian and African countries show much more variation, with some paying very little, likely due to government subsidies. The Americas cluster in the middle range.</p>
 </section>
 </section>
 
