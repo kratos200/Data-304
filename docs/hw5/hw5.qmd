@@ -11,15 +11,17 @@ This is where I'll complete the exercises for Homework 5.
 
 I chose to analyze the map showing access to Winter Olympic sports facilities across the United States.
 
+![Access to Winter Olympic sports facilities near you](images/WinterOlympics.png)
+
 [Access to Winter Olympic sports near you](https://flowingdata.com/2026/02/09/access-to-winter-olympic-sports-near-you/)
 
 ### b. What marks are being used? What variables are mapped to which properties?
 
-The map uses colored areas to show regions. Color intensity represents how many Winter Olympic sports facilities are within an hour's drive - lighter blue means fewer facilities (1-2), darker blue means more (6+). The yellow circles mark cities that previously hosted the Winter Olympics.
+The map uses area marks to show regions, with x and y encoding geographic position through longitude and latitude. Color intensity represents how many Winter Olympic sports facilities are within an hour's drive, where lighter blue means fewer facilities and darker blue means 6 or more. The yellow circle marks are plotted at the coordinates of previous Winter Olympics host cities.
 
 ### c. What is the main story of this graphic?
 
-This map shows that most Americans don't live near Winter Olympic sports facilities. They're mostly concentrated in the northern states and mountain areas, while the South and most of the central U.S. have almost no access. It basically shows why only a few specific places in America can realistically host the Winter Olympics.
+The map shows that access to Winter Olympic sports facilities is heavily concentrated in the Northeast, the Great Lakes region, and parts of the mountain West. Large parts of the South and central US have little to no access. That said, many of those empty areas also have low population density, so the story is less about "most Americans" and more about which regions of the country have the infrastructure to support winter sports.
 
 ### d. What makes it a good graphic?
 
@@ -31,8 +33,7 @@ I think I could do the basic choropleth map with different colors for different 
 
 ### f. Are there any features of the graphic that you would not know how to do in Vega-Lite?
 
-The hardest part would be getting that "hour's drive" data, that's not just counties or states, it's custom geographic areas based on drive time. I also wouldn't know how to make the map look this polished with the smooth styling and professional text placement.
-
+The hardest part would be getting the drive-time geographic boundaries since that's custom geospatial data rather than standard county or state shapes. The text labels for host cities would actually be straightforward to add using a text layer in Vega-Lite with the city coordinates.
 
 
 
