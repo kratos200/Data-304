@@ -65,8 +65,7 @@ spec
 
 ## Inventory Was Mostly Under Control
 
-Ticket volume stayed consistent between 6,000 and 7,500 tickets per month.
-No major spikes or drops. The team dealt with a predictable workload all year.
+Inventory stayed under the 1,700 target for most of the year. November was the one exception where it briefly went over.
 ```{r}
 #| code-fold: true
 spec <- as_vegaspec(list(

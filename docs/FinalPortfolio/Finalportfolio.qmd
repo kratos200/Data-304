@@ -97,8 +97,8 @@ spec <- as_vegaspec(list(
     columns = 3
   ),
   spec = list(
-    width = 180,
-    height = 150,
+    width = 110,
+    height = 130,
     transform = list(
       list(
         aggregate = list(
@@ -163,7 +163,7 @@ Chart 1 – Comparing Twins:
 Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.
 
 Chart 2 – Comparing Kits:
-Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.
+Twins agreeing with each other is one thing, but that doesn't mean the kits agree with each other. This chart averages each twin pair and traces them across all three services, so a flat line means Ancestry, 23andMe, and MyHeritage all came to roughly the same conclusion for that family. For East Asia and West Africa the lines are pretty flat, meaning the kits are consistent. The NW Europe panel is where things get interesting. Pair 1 starts at around 90% with Ancestry then drops sharply to about 65% with both 23andMe and MyHeritage. That's a huge gap for people who are supposedly getting the same test. SE Europe tells a different story where pair 1 actually rises across kits rather than dropping, suggesting the disagreement isn't just about one kit inflating European ancestry but about genuinely different methodologies drawing different boundaries. It likely comes down to how each company builds their reference populations. 23andMe compares your DNA against over 14,000 reference individuals, and if their definition of Northwestern European draws different boundaries than Ancestry's, the estimates will diverge even when the underlying DNA is identical. These kits aren't reading some ground truth about your ancestry. They're making educated guesses based on methodology that varies from company to company.
 
 ## Exercise 2.
 
@@ -185,6 +185,9 @@ I kept all four metrics in the slide deck since they each add something to the o
 
 
 ## Exercise 3.
+
+# a.
+[View data](data/tanzania.json)
 
 # b.
 
@@ -279,7 +282,7 @@ spec <- as_vegaspec(list(
   ),
   vconcat = list(
     list(
-      width = 800,
+      width = 620,
       height = 350,
       layer = list(
         list(
@@ -327,27 +330,11 @@ spec <- as_vegaspec(list(
               list(field = "price", type = "quantitative", title = "Price", format = "$,.0f")
             )
           )
-        ),
-        list(
-          mark = list(type = "text", dy = -10, fontSize = 10, fontStyle = "italic", opacity = 0.7),
-          data = list(values = list(
-            list(label_date = "2017-07-01", label_y = 65000, label = "2017 Bull Run"),
-            list(label_date = "2018-07-01", label_y = 65000, label = "2018 Crash"),
-            list(label_date = "2019-12-01", label_y = 65000, label = "Accumulation"),
-            list(label_date = "2021-05-01", label_y = 65000, label = "2021 Bull Run"),
-            list(label_date = "2022-06-01", label_y = 65000, label = "2022 Crash"),
-            list(label_date = "2024-01-01", label_y = 115000, label = "Recovery")
-          )),
-          encoding = list(
-            x = list(field = "label_date", type = "temporal", scale = list(domain = list(param = "brush"))),
-            y = list(field = "label_y", type = "quantitative"),
-            text = list(field = "label", type = "nominal")
-          )
         )
       )
     ),
     list(
-      width = 800,
+      width = 620,
       height = 60,
       data = list(url = "data/bitcoin.json"),
       mark = list(type = "line", color = "#1a1a2e", strokeWidth = 1),
@@ -395,7 +382,7 @@ In the Bitcoin chart, color encodes the market cycle category on the background 
 # b.
 Layers:
 
-The Bitcoin chart uses three layers stacked on top of each other: the colored background rectangles, the price line, and the text annotations. The twins chart from Exercise 1 also layers line marks connecting twin pairs with point marks at each end.
+The Bitcoin chart uses two layers: the colored background rectangles and the price line. The twins chart from Exercise 1 also layers line marks connecting twin pairs with point marks at each end.
 
 # c.
 Facets:
@@ -424,9 +411,9 @@ The Bitcoin chart includes a brush selection on the overview panel at the bottom
 
 ## Exercise 6
 # a.
-- Forcing a CSV field to numeric with a calculate transform
+- Converting CSV to JSON for reliable type parsing
 
-When I first loaded the Bitcoin CSV, the price line wasn't showing up at all even though the data looked fine in R. The problem was that Vega-Lite was reading the price column as a string when loading from a file. I had to add a calculate transform using toNumber(datum.price) to explicitly cast it to a number before it could be encoded on the y-axis. We never ran into this in class because we mostly used inline data or JSON files where types are already handled correctly.
+When I first loaded the Bitcoin data as a CSV, the price line wasn't showing up at all even though the data looked fine in R. The problem was that Vega-Lite was reading the price column as a string when loading from a CSV file. Rather than trying to force a type cast inside the spec, I converted the data to JSON first using write_json in R, which preserves numeric types correctly so Vega-Lite can read them without any extra transforms. We always used inline data or pre-formatted datasets in class so this kind of file format issue never came up, and figuring out that the fix was upstream in R rather than inside the Vega-Lite spec was something I had to work out on my own.
 
 - rect mark for background shading
 
