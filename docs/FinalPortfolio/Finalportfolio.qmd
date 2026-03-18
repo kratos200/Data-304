@@ -160,15 +160,18 @@ spec
 # d.
 
 Chart 1 – Comparing Twins:
+
 Identical twins have the same DNA, so ancestry kits should give them the same results. That's mostly what we see here. The lines connect twin A to twin B within each kit and region, and for the vast majority of pairs they're nearly flat, meaning the two twins got almost identical estimates. The story the chart is telling is actually reassuring that these kits are consistent when they're working with the same genetic material. The one place things get noticeably messier is SE Europe with MyHeritage, where one pair shows a steeper line than anywhere else in the chart. Smaller ancestry components like SE European are harder to estimate precisely, so it makes sense that's where the occasional disagreement shows up.
 
 Chart 2 – Comparing Kits:
+
 Twins agreeing with each other is one thing, but that doesn't mean the kits agree with each other. This chart averages each twin pair and traces them across all three services, so a flat line means Ancestry, 23andMe, and MyHeritage all came to roughly the same conclusion for that family. For East Asia and West Africa the lines are pretty flat, meaning the kits are consistent. The NW Europe panel is where things get interesting. Pair 1 starts at around 90% with Ancestry then drops sharply to about 65% with both 23andMe and MyHeritage. That's a huge gap for people who are supposedly getting the same test. SE Europe tells a different story where pair 1 actually rises across kits rather than dropping, suggesting the disagreement isn't just about one kit inflating European ancestry but about genuinely different methodologies drawing different boundaries. It likely comes down to how each company builds their reference populations. 23andMe compares your DNA against over 14,000 reference individuals, and if their definition of Northwestern European draws different boundaries than Ancestry's, the estimates will diverge even when the underlying DNA is identical. These kits aren't reading some ground truth about your ancestry. They're making educated guesses based on methodology that varies from company to company.
 
 ## Exercise 2.
 
 # Challenge #4: Tickets
 # 1. 
+![](images/challenge4.png)
 Key takeaways from the original report:
 
 - Monthly Ticket Volume: Volume stayed pretty consistent all year, somewhere between 6,000 and 7,500 tickets per month. Email and telephone were the two biggest channels by a wide margin.
@@ -178,6 +181,7 @@ Key takeaways from the original report:
 
 # 2.
 What I chose to focus on:
+
 I kept all four metrics in the slide deck since they each add something to the overall picture. The service level improvement is the main story though since it shows the clearest progress over time. The original reachability chart was a bit of a mess with two y-axes stacked on top of each other, so I simplified it to just show reachability against the goal. The answer speed line added visual clutter without changing the main takeaway.
 
 # 3.
@@ -362,10 +366,10 @@ spec
 # b.
 Design Choices:
 
-The main goal was to make the cyclical nature of Bitcoin's price history impossible to miss. Anyone who's followed crypto knows the pattern — boom, crash, accumulate, repeat — but it's easy to lose that structure when you're just looking at a raw price line. The colored background rectangles are doing the heavy lifting here. They divide the chart into named periods so the viewer doesn't have to mentally parse the timeline themselves. I used orange for bull runs, red for crashes, gray for the accumulation period, and green for the current recovery, which maps naturally to the intuition most people already have about those colors in a financial context.
-I kept the price line a single dark color with no extra encoding on top of it. Wilke talks about avoiding redundant complexity, and adding color or thickness variation to the line itself would have competed with the background rectangles rather than complementing them. The labels are italic and faded so they read as annotations rather than data, which is a Tufte-style move. They're context, not content.
+The main goal was to make the cyclical nature of Bitcoin's price history impossible to miss. Anyone who's followed crypto knows the pattern, boom, crash, accumulate, repeat, but it's easy to lose that structure when you're just looking at a raw price line. The colored background rectangles are doing the heavy lifting here. They divide the chart into named periods so the viewer doesn't have to mentally parse the timeline themselves. I used orange for bull runs, red for crashes, gray for the accumulation period, and green for the current recovery, which maps naturally to the intuition most people already have about those colors in a financial context.
+I kept the price line a single dark color with no extra encoding on top of it. Wilke talks about avoiding redundant complexity, and adding color or thickness variation to the line itself would have competed with the background rectangles rather than complementing them. I originally had text labels inside the chart naming each cycle, but they started overlapping in the narrower sections so I pulled them out. The legend on the right handles that job just fine on its own.
 One alternative I considered was a candlestick chart showing open/high/low/close per day, which is the standard format in financial analysis. I decided against it because the daily volatility noise would have buried the cycle story. A simple line keeps the focus on the big picture trend across years rather than day-to-day swings.
-The chart also supports interactive tooltips on hover, showing the exact date and price at any point along the line, which lets curious readers dig into specific moments without cluttering the static view.
+The chart also has two layers of interactivity. Hovering over the line shows the exact date and price at that point. The small overview panel at the bottom lets you brush any time range to zoom the main chart into that window, which is useful if you want to look closely at something like the 2021 bull run without losing sight of where it sits in the broader history.
 
 # c.
 Data Source:
@@ -411,27 +415,27 @@ The Bitcoin chart includes a brush selection on the overview panel at the bottom
 
 ## Exercise 6
 # a.
-- Converting CSV to JSON for reliable type parsing
+Converting CSV to JSON for reliable type parsing:
 
-When I first loaded the Bitcoin data as a CSV, the price line wasn't showing up at all even though the data looked fine in R. The problem was that Vega-Lite was reading the price column as a string when loading from a CSV file. Rather than trying to force a type cast inside the spec, I converted the data to JSON first using write_json in R, which preserves numeric types correctly so Vega-Lite can read them without any extra transforms. We always used inline data or pre-formatted datasets in class so this kind of file format issue never came up, and figuring out that the fix was upstream in R rather than inside the Vega-Lite spec was something I had to work out on my own.
+- When I first loaded the Bitcoin data as a CSV, the price line wasn't showing up at all even though the data looked fine in R. The problem was that Vega-Lite was reading the price column as a string when loading from a CSV file. Rather than trying to force a type cast inside the spec, I converted the data to JSON first using write_json in R, which preserves numeric types correctly so Vega-Lite can read them without any extra transforms. We always used inline data or pre-formatted datasets in class so this kind of file format issue never came up, and figuring out that the fix was upstream in R rather than inside the Vega-Lite spec was something I had to work out on my own.
 
-- rect mark for background shading
+rect mark for background shading:
 
-We used rect marks in class but not like this. Using them as background shading behind a line chart requires both an x and x2 encoding to define the width of each band, and the color encoding on those marks runs its own independent scale and legend separate from the other layers. It took some trial and error to get the rectangles to sit behind the line without overriding the rest of the encodings.
+- We used rect marks in class but not like this. Using them as background shading behind a line chart requires both an x and x2 encoding to define the width of each band, and the color encoding on those marks runs its own independent scale and legend separate from the other layers. It took some trial and error to get the rectangles to sit behind the line without overriding the rest of the encodings.
 
-- Linking a brush param to a scale domain
+Linking a brush param to a scale domain:
 
-To make the detail view respond to the brush selection, I had to set scale = list(domain = list(param = "brush")) on the x encoding of the top chart. This tells Vega-Lite to use the brush selection as the x domain instead of the full data range, so as you drag on the overview the top chart re-renders to that window. We touched on params and selections briefly in class but I had not seen this specific pattern of wiring a param directly to a scale domain before working it out for this chart.
+- To make the detail view respond to the brush selection, I had to set scale = list(domain = list(param = "brush")) on the x encoding of the top chart. This tells Vega-Lite to use the brush selection as the x domain instead of the full data range, so as you drag on the overview the top chart re-renders to that window. We touched on params and selections briefly in class but I had not seen this specific pattern of wiring a param directly to a scale domain before working it out for this chart.
 
 # b.
-- Wilke (2019), Chapter 19: Handling overlapping points
+Wilke (2019), Chapter 19: Handling overlapping points:
 
-In the twins chart, I used semi-transparent lines and small filled points rather than large opaque marks. Wilke's chapter on overlapping points explains that reducing opacity and mark size helps when multiple data points share similar positions, which is exactly the problem in the twins chart where several pairs have nearly identical genetic share values across regions. Following this advice keeps individual pairs distinguishable without the chart becoming a blob of overlapping ink.
+- In the twins chart, I used semi-transparent lines and small filled points rather than large opaque marks. Wilke's chapter on overlapping points explains that reducing opacity and mark size helps when multiple data points share similar positions, which is exactly the problem in the twins chart where several pairs have nearly identical genetic share values across regions. Following this advice keeps individual pairs distinguishable without the chart becoming a blob of overlapping ink.
 
-- Wilke (2019), Chapter 17: The principle of proportional ink
+Wilke (2019), Chapter 17: The principle of proportional ink:
 
-The y-axis in the twins charts is fixed from 0 to 1 rather than auto-scaled to the data range. Wilke's chapter on proportional ink argues that the amount of ink used to represent a value should be proportional to the value itself, which means axes should generally start at zero for ratio-scale data. Auto-scaling would have made small differences between twins look much larger than they really are.
+- The y-axis in the twins charts is fixed from 0 to 1 rather than auto-scaled to the data range. Wilke's chapter on proportional ink argues that the amount of ink used to represent a value should be proportional to the value itself, which means axes should generally start at zero for ratio-scale data. Auto-scaling would have made small differences between twins look much larger than they really are.
 
-- Wilke (2019), Chapter 22: Titles, captions, and tables
+Wilke (2019), Chapter 22: Titles, captions, and tables:
 
-All three of my main charts use a title and subtitle anchored to the left with anchor = "start". Wilke recommends that titles be informative and tell the reader what to look for rather than just labeling the axes, which is why the Bitcoin chart is titled "Boom, Bust, Repeat" rather than something generic like "Bitcoin Price Over Time."
+- All three of my main charts use a title and subtitle anchored to the left with anchor = "start". Wilke recommends that titles be informative and tell the reader what to look for rather than just labeling the axes, which is why the Bitcoin chart is titled "Boom, Bust, Repeat" rather than something generic like "Bitcoin Price Over Time."
